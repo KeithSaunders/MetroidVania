@@ -82,13 +82,14 @@ func move():
 	
 	# Checks on move and slide with snap	
 	# Just left the ground
-#	if was_on_floor and not is_on_floor() and not just_jumped:
-#		motion.y = 0
-#		position.y = last_position.y
+	if was_on_floor and not is_on_floor() and not just_jumped:
+		motion.y = 0
+		position.y = last_position.y
 		
 	# Landing
-#	if was_in_air and is_on_floor():
-#		motion.x = last_motion.x
-		
-	# Prevent sliding
-##		position.x = last_position.x
+	if was_in_air and is_on_floor():
+		motion.x = last_motion.x	
+	
+	# Prevent Sliding 
+	if is_on_floor() and get_floor_velocity().length() == 0 and abs(motion.x) < 1:
+		position.x = last_position.x
