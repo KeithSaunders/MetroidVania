@@ -35,8 +35,8 @@ func _physics_process(delta: float) -> void:
 	# warning-ignore:shadowed_variable
 	var input_vector = get_input_vector()
 	apply_horizontal_force(input_vector, delta)
-	update_snap_vector()
 	apply_friction(input_vector)
+	update_snap_vector()
 	jump_check()
 	apply_gravity(delta)
 	update_animation(input_vector)
@@ -67,7 +67,6 @@ func create_dust_effect():
 	dust_position.x += rand_range(-4, 4)
 	Utils.instance_scene_on_main(DustEffect, dust_position)
 
-
 func get_input_vector():
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -85,9 +84,7 @@ func apply_friction(input_vector):
 func update_snap_vector():
 	if is_on_floor():
 		snap_vector = -get_floor_normal()
-	if is_on_floor() and abs(motion.y) > 30:
-		motion.y = 0
-	
+
 func jump_check():
 	if is_on_floor() or coyoteJumpTimer.time_left > 0:
 		if Input.is_action_just_pressed("ui_up"):
