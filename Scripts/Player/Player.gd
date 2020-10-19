@@ -1,10 +1,14 @@
 extends KinematicBody2D
 
 const DustEffect = preload("res://Scenes/Scenes/Effects/DustEffect.tscn")
+const PlayerBullet = preload("res://Scenes/Scenes/Player/PlayerBullet.tscn")
+
 
 onready var sprite = $Sprite
 onready var spriteAnimator = $SpriteAnimator
 onready var coyoteJumpTimer = $CoyoteJumpTimer
+onready var playergun = $Sprite/PlayerGun
+onready var muzzle = $Sprite/PlayerGun/Sprite/Muzzle
 
 export (int) var ACCELERATION = 512
 export (int) var MAX_SPEED = 64
@@ -12,6 +16,7 @@ export (float) var FRICTION = 0.25
 export (int) var JUMP_FORCE = 128
 export (int) var MAX_SLOPE_ANGLE = 46
 export (int) var GRAVITY = 200
+export (int) var BULLETSPEED = 250
 
 var motion = Vector2.ZERO
 var snap_vector = Vector2.ZERO
@@ -28,13 +33,29 @@ func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
 	update_animation(input_vector)
 	move()
+	
+	if Input.is_action_just_pressed("fire"):
+		fire_bullet()
+	
+func fire_bullet():
+	var bullet = Utils.instance_scene_on_main(PlayerBullet, muzzle.global_position)
+	
+	# Bullet velocity will fire to the right, based on the gun's rotation. Will shoot to the left
+	# based on the sprite scale
+	bullet.velocity = Vector2.RIGHT.rotated(playergun.rotation) * BULLETSPEED
+	
+	# Will be -1 or 1 based on sprite scale and will shoot accordingly (based on mouse position)
+	# Only impacts the x-axis. Not y-axis
+	bullet.velocity.x *= sprite.scale.x
+	
+	# Access the rotation passed prior (based on the playergun) and applies it to the bullet
+	bullet.rotation = bullet.velocity.angle()
 
 func create_dust_effect():
 	var dust_position = global_position
 	dust_position.x += rand_range(-4, 4)
-	var dustEffect = DustEffect.instance()
-	get_tree().current_scene.add_child(dustEffect)
-	dustEffect.global_position = dust_position
+	Utils.instance_scene_on_main(DustEffect, dust_position)
+
 
 func get_input_vector():
 	var input_vector = Vector2.ZERO
