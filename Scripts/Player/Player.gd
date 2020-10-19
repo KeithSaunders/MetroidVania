@@ -85,6 +85,8 @@ func apply_friction(input_vector):
 func update_snap_vector():
 	if is_on_floor():
 		snap_vector = -get_floor_normal()
+	if is_on_floor() and abs(motion.y) > 30:
+		motion.y = 0
 	
 func jump_check():
 	if is_on_floor() or coyoteJumpTimer.time_left > 0:
@@ -126,8 +128,8 @@ func move():
 	# Checks on move and slide with snap
 	# Just left the ground
 	if was_on_floor and not is_on_floor() and not just_jumped:
-		motion.y = 0
 		position.y = last_position.y
+		motion.y = 0
 		coyoteJumpTimer.start()
 		
 	# Landing
