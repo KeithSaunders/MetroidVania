@@ -1,15 +1,17 @@
 extends KinematicBody2D
-
+# Preload Effects
 const DustEffect = preload("res://Scenes/Scenes/Effects/DustEffect.tscn")
 const PlayerBullet = preload("res://Scenes/Scenes/Player/PlayerBullet.tscn")
 
-
+# Get Access
 onready var sprite = $Sprite
 onready var spriteAnimator = $SpriteAnimator
 onready var coyoteJumpTimer = $CoyoteJumpTimer
+onready var fireBulletTimer = $FireBulletTimer
 onready var playergun = $Sprite/PlayerGun
 onready var muzzle = $Sprite/PlayerGun/Sprite/Muzzle
 
+# Exportant variables
 export (int) var ACCELERATION = 512
 export (int) var MAX_SPEED = 64
 export (float) var FRICTION = 0.25
@@ -18,6 +20,7 @@ export (int) var MAX_SLOPE_ANGLE = 46
 export (int) var GRAVITY = 200
 export (int) var BULLETSPEED = 250
 
+# Global Variables
 var motion = Vector2.ZERO
 var snap_vector = Vector2.ZERO
 var just_jumped = false
@@ -34,7 +37,7 @@ func _physics_process(delta: float) -> void:
 	update_animation(input_vector)
 	move()
 	
-	if Input.is_action_just_pressed("fire"):
+	if Input.is_action_pressed("fire") and fireBulletTimer.time_left == 0:
 		fire_bullet()
 	
 func fire_bullet():
@@ -50,6 +53,9 @@ func fire_bullet():
 	
 	# Access the rotation passed prior (based on the playergun) and applies it to the bullet
 	bullet.rotation = bullet.velocity.angle()
+	
+	# One shot timer to set firerate | allows holding left button down
+	fireBulletTimer.start()
 
 func create_dust_effect():
 	var dust_position = global_position
