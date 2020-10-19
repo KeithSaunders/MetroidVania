@@ -27,7 +27,12 @@ var just_jumped = false
 
 
 func _physics_process(delta: float) -> void:
+
+	# warning-ignore:shadowed_variable
+	# warning-ignore:unused_variable
+	# warning-ignore:shadowed_variable
 	var just_jumped = false
+	# warning-ignore:shadowed_variable
 	var input_vector = get_input_vector()
 	apply_horizontal_force(input_vector, delta)
 	update_snap_vector()
