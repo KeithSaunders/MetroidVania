@@ -11,8 +11,9 @@ onready var coyoteJumpTimer = $CoyoteJumpTimer
 onready var fireBulletTimer = $FireBulletTimer
 onready var playergun = $Sprite/PlayerGun
 onready var muzzle = $Sprite/PlayerGun/Sprite/Muzzle
+onready var blinkAnimator = $BlinkAnimator
 
-# Exportant variables
+# Export variables
 export (int) var ACCELERATION = 512
 export (int) var MAX_SPEED = 64
 export (float) var FRICTION = 0.25
@@ -25,6 +26,7 @@ export (int) var BULLETSPEED = 250
 var motion = Vector2.ZERO
 var snap_vector = Vector2.ZERO
 var just_jumped = false
+var invicible = false setget set_invicible
 
 
 func _physics_process(delta: float) -> void:
@@ -141,3 +143,10 @@ func move():
 	if is_on_floor() and get_floor_velocity().length() == 0 and abs(motion.x) < 1:
 		position.x = last_position.x
 
+func _on_Hurtbox_hit(damage) -> void:
+	if not invicible:
+		blinkAnimator.play("Blink")
+
+
+func set_invicible(value):
+	invicible = value
