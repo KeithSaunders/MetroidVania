@@ -23,6 +23,7 @@ func _ready() -> void:
 	motion.y = 8
 	state = WALKING_DIRECTION 
 	
+# warning-ignore:unused_argument
 func _physics_process(delta: float) -> void:
 	match state:
 		DIRECTION.RIGHT:
