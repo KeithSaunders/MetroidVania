@@ -12,13 +12,13 @@ func _on_VisibilityNotifier2D_viewport_exited(_viewport: Viewport) -> void:
 	queue_free()
 
 
-func _on_Hitbox_body_entered(body: Node) -> void:
+func _on_Hitbox_body_entered(_body: Node) -> void:
 	Utils.instance_scene_on_main(explosionEffect, global_position)
 	queue_free()
 	
 
 
 
-func _on_Hitbox_area_entered(area: Area2D) -> void:
+func _on_Hitbox_area_entered(_area: Area2D) -> void:
 	Utils.instance_scene_on_main(explosionEffect, global_position)
 	queue_free()
