@@ -7,3 +7,6 @@ extends "res://Scenes/Scenes/Player/Projectile.gd"
 func _ready() -> void:
 	set_process(false)
 
+# Destroy on wall collision
+func _on_Hitbox_body_entered(body: Node) -> void:
+	queue_free()
