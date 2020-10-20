@@ -2,6 +2,7 @@ extends KinematicBody2D
 # Preload Effects
 const DustEffect = preload("res://Scenes/Scenes/Effects/DustEffect.tscn")
 const PlayerBullet = preload("res://Scenes/Scenes/Player/PlayerBullet.tscn")
+const JumpEffect = preload("res://Scenes/Scenes/Effects/JumpEffect.tscn")
 
 # Get Access
 onready var sprite = $Sprite
@@ -95,6 +96,7 @@ func jump_check():
 			motion.y = -JUMP_FORCE/2
 			
 func jump(force):
+	Utils.instance_scene_on_main(JumpEffect, global_position)
 	motion.y = -force
 	snap_vector = Vector2.ZERO
 			
@@ -133,6 +135,7 @@ func move():
 	if was_in_air and is_on_floor():
 		motion.x = last_motion.x
 		create_dust_effect()
+		Utils.instance_scene_on_main(JumpEffect, global_position)
 	
 	# Prevent Sliding 
 	if is_on_floor() and get_floor_velocity().length() == 0 and abs(motion.x) < 1:
