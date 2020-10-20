@@ -23,7 +23,7 @@ tile_data = PoolIntArray( -65536, 0, 0, -65535, 0, 1, -65534, 0, 1, -65533, 0, 5
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 112, 104 )
 
-[node name="PlayerPositionLink" parent="Player" index="3"]
+[node name="PlayerPositionLink" parent="Player" index="4"]
 remote_path = NodePath("../../Camera")
 
 [node name="MovingPlatforms " parent="." instance=ExtResource( 4 )]
