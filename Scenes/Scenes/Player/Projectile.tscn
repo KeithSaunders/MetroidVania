@@ -14,4 +14,5 @@ rect = Rect2( -4, -4, 8, 8 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Hitbox" parent="." instance=ExtResource( 2 )]
+collision_mask = 2
 [connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]
