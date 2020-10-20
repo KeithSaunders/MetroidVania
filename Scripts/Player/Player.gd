@@ -4,6 +4,8 @@ const DustEffect = preload("res://Scenes/Scenes/Effects/DustEffect.tscn")
 const PlayerBullet = preload("res://Scenes/Scenes/Player/PlayerBullet.tscn")
 const JumpEffect = preload("res://Scenes/Scenes/Effects/JumpEffect.tscn")
 
+var playerStats = ResourceLoader.PlayerStats
+
 # Get Access
 onready var sprite = $Sprite
 onready var spriteAnimator = $SpriteAnimator
@@ -28,6 +30,8 @@ var snap_vector = Vector2.ZERO
 var just_jumped = false
 var invicible = false setget set_invicible
 
+func _ready():
+	playerStats.connect("player_died", self, "_on_died")
 
 func _physics_process(delta: float) -> void:
 
@@ -145,8 +149,11 @@ func move():
 
 func _on_Hurtbox_hit(damage) -> void:
 	if not invicible:
+		playerStats.health -= damage
 		blinkAnimator.play("Blink")
 
+func _on_died():
+	queue_free()
 
 func set_invicible(value):
 	invicible = value
