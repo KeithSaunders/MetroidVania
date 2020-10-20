@@ -19,7 +19,9 @@ onready var wallLeft = $WallLeft
 onready var wallRight = $WallRight
 
 func _ready() -> void:
-	state = WALKING_DIRECTION
+	# Fixes a bug with slopes
+	motion.y = 8
+	state = WALKING_DIRECTION 
 	
 func _physics_process(delta: float) -> void:
 	match state:
