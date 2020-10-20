@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Scenes/World Prefabs/TileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Scenes/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Scenes/World.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Scenes/World Prefabs/MovingPlatforms .tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Scenes/World Prefabs/WalkingEnemy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Resources/LeftRightPath.tres" type="Curve2D" id=6]
 
 [node name="World" type="Node"]
 script = ExtResource( 3 )
@@ -24,7 +25,13 @@ position = Vector2( 112, 104 )
 remote_path = NodePath("../../Camera")
 
 [node name="MovingPlatforms " parent="." instance=ExtResource( 4 )]
-position = Vector2( 144, 120 )
+position = Vector2( 136, 104 )
+
+[node name="KinematicBody2D" parent="MovingPlatforms " index="0"]
+position = Vector2( -0.102661, -0.156227 )
+
+[node name="Path2D" parent="MovingPlatforms " index="1"]
+curve = ExtResource( 6 )
 
 [node name="WalkingEnemy" parent="." instance=ExtResource( 5 )]
 position = Vector2( 192, 128 )
@@ -36,3 +43,5 @@ position = Vector2( 312, 128 )
 position = Vector2( 48, 64 )
 
 [editable path="Player"]
+
+[editable path="MovingPlatforms "]

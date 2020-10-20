@@ -8,7 +8,7 @@ enum DIRECTION {
 	}
 
 # REMEMBER! Extends the max_speed, this will export the direction as well.
-export(DIRECTION) var WALKING_DIRECTION
+export(DIRECTION) var WALKING_DIRECTION = DIRECTION.RIGHT
 
 var state
 
