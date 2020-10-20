@@ -27,6 +27,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Utils="*res://Utils.gd"
+ResourceLoader="*res://Resources/ResourceLoader.gd"
 
 [display]
 
