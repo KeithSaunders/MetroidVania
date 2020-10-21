@@ -24,7 +24,13 @@ export (int) var MAX_SLOPE_ANGLE = 46
 export (int) var GRAVITY = 200
 export (int) var BULLETSPEED = 250
 
+enum {
+	MOVE,
+	WALL_SLIDE
+}
+
 # Global Variables
+var state = MOVE
 var motion = Vector2.ZERO
 var snap_vector = Vector2.ZERO
 var just_jumped = false
@@ -40,15 +46,21 @@ func _physics_process(delta: float) -> void:
 	# warning-ignore:unused_variable
 	# warning-ignore:shadowed_variable
 	var just_jumped = false
-	# warning-ignore:shadowed_variable
-	var input_vector = get_input_vector()
-	apply_horizontal_force(input_vector, delta)
-	apply_friction(input_vector)
-	update_snap_vector()
-	jump_check()
-	apply_gravity(delta)
-	update_animation(input_vector)
-	move()
+	
+	match state:
+		MOVE:
+			# warning-ignore:shadowed_variable
+			var input_vector = get_input_vector()
+			apply_horizontal_force(input_vector, delta)
+			apply_friction(input_vector)
+			update_snap_vector()
+			jump_check()
+			apply_gravity(delta)
+			update_animation(input_vector)
+			move()
+			wall_slide_check()
+		WALL_SLIDE:
+			pass
 	
 	if Input.is_action_pressed("fire") and fireBulletTimer.time_left == 0:
 		fire_bullet()
@@ -164,3 +176,8 @@ func _on_died():
 
 func set_invicible(value):
 	invicible = value
+	
+func wall_slide_check():
+	if not is_on_floor() and is_on_wall():
+		state = WALL_SLIDE
+		double_jump = true
