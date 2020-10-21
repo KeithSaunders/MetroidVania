@@ -23,6 +23,8 @@ export (int) var JUMP_FORCE = 128
 export (int) var MAX_SLOPE_ANGLE = 46
 export (int) var GRAVITY = 200
 export (int) var BULLETSPEED = 250
+export (int) var WALLSLIDESPEED = 48
+export (int) var MAXWALLSLIDESPEED = 128
 
 enum {
 	MOVE,
@@ -60,7 +62,15 @@ func _physics_process(delta: float) -> void:
 			move()
 			wall_slide_check()
 		WALL_SLIDE:
-			pass
+			spriteAnimator.play("Animate_Wall_Slide")
+			var wall_axis = get_wall_axis()
+			if wall_axis != 0:
+				sprite.scale.x = wall_axis
+			wall_slide_jump_check(wall_axis)
+			wall_slide_drop_check(delta)
+			wall_slide_fast_fall_check(delta)
+			move()
+			wall_detach_check(wall_axis)
 	
 	if Input.is_action_pressed("fire") and fireBulletTimer.time_left == 0:
 		fire_bullet()
@@ -181,3 +191,36 @@ func wall_slide_check():
 	if not is_on_floor() and is_on_wall():
 		state = WALL_SLIDE
 		double_jump = true
+
+func get_wall_axis():
+	# True/False if collides
+	var is_right_wall = test_move(transform, Vector2.RIGHT)
+	var is_left_wall = test_move(transform, Vector2.LEFT)
+	return int(is_left_wall) - int(is_right_wall)
+	
+func wall_slide_jump_check(wall_axis):
+	if Input.is_action_just_pressed("ui_up"):
+		motion.x = wall_axis * MAX_SPEED
+		motion.y = -JUMP_FORCE/1.25
+		state = MOVE
+
+func wall_slide_drop_check(delta):
+	if Input.is_action_just_pressed("ui_right"):
+		motion.x = ACCELERATION * delta
+		state = MOVE
+		
+	if Input.is_action_just_pressed("ui_left"):
+		motion.x = -ACCELERATION * delta
+		state = MOVE
+		
+func wall_slide_fast_fall_check(delta):
+	var max_slide_speed = WALLSLIDESPEED
+	if Input.is_action_just_pressed("ui_down"):
+		max_slide_speed = MAXWALLSLIDESPEED
+	motion.y = min(motion.y + GRAVITY * delta, max_slide_speed)
+
+func wall_detach_check(wall_axis):
+	if wall_axis == 0 or is_on_floor():
+		state = MOVE
+		
+			
