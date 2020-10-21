@@ -3,6 +3,7 @@ extends KinematicBody2D
 const DustEffect = preload("res://Scenes/Scenes/Effects/DustEffect.tscn")
 const PlayerBullet = preload("res://Scenes/Scenes/Player/PlayerBullet.tscn")
 const JumpEffect = preload("res://Scenes/Scenes/Effects/JumpEffect.tscn")
+const WallDustEffect = preload("res://Scenes/Scenes/Effects/WallDustEffect.tscn")
 
 var playerStats = ResourceLoader.PlayerStats
 
@@ -67,10 +68,9 @@ func _physics_process(delta: float) -> void:
 			if wall_axis != 0:
 				sprite.scale.x = wall_axis
 			wall_slide_jump_check(wall_axis)
-			wall_slide_drop_check(delta)
-			wall_slide_fast_fall_check(delta)
+			wall_slide_drop(delta)
 			move()
-			wall_detach_check(wall_axis)
+			wall_detach(delta, wall_axis)
 	
 	if Input.is_action_pressed("fire") and fireBulletTimer.time_left == 0:
 		fire_bullet()
@@ -190,21 +190,36 @@ func set_invicible(value):
 func wall_slide_check():
 	if not is_on_floor() and is_on_wall():
 		state = WALL_SLIDE
+		create_dust_effect()
 		double_jump = true
 
 func get_wall_axis():
 	# True/False if collides
 	var is_right_wall = test_move(transform, Vector2.RIGHT)
 	var is_left_wall = test_move(transform, Vector2.LEFT)
+	
 	return int(is_left_wall) - int(is_right_wall)
 	
 func wall_slide_jump_check(wall_axis):
 	if Input.is_action_just_pressed("ui_up"):
 		motion.x = wall_axis * MAX_SPEED
 		motion.y = -JUMP_FORCE/1.25
+		var dust_position = global_position + Vector2(wall_axis * 4,-2)
+		var dust = Utils.instance_scene_on_main(WallDustEffect, dust_position)
+		dust.scale.x = wall_axis
 		state = MOVE
+		
 
-func wall_slide_drop_check(delta):
+func wall_slide_drop(delta):
+	var max_slide_speed = WALLSLIDESPEED
+	if Input.is_action_pressed("ui_down"):
+		max_slide_speed = MAXWALLSLIDESPEED
+	motion.y = min(motion.y + GRAVITY * delta, max_slide_speed)
+
+func wall_detach(delta, wall_axis):
+	if wall_axis == 0 or is_on_floor():
+		state = MOVE
+		
 	if Input.is_action_just_pressed("ui_right"):
 		motion.x = ACCELERATION * delta
 		state = MOVE
@@ -212,15 +227,3 @@ func wall_slide_drop_check(delta):
 	if Input.is_action_just_pressed("ui_left"):
 		motion.x = -ACCELERATION * delta
 		state = MOVE
-		
-func wall_slide_fast_fall_check(delta):
-	var max_slide_speed = WALLSLIDESPEED
-	if Input.is_action_just_pressed("ui_down"):
-		max_slide_speed = MAXWALLSLIDESPEED
-	motion.y = min(motion.y + GRAVITY * delta, max_slide_speed)
-
-func wall_detach_check(wall_axis):
-	if wall_axis == 0 or is_on_floor():
-		state = MOVE
-		
-			
