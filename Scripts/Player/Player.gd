@@ -28,6 +28,7 @@ export (int) var BULLETSPEED = 250
 var motion = Vector2.ZERO
 var snap_vector = Vector2.ZERO
 var just_jumped = false
+var double_jump = true
 var invicible = false setget set_invicible
 
 func _ready():
@@ -101,6 +102,11 @@ func jump_check():
 		if Input.is_action_just_released("ui_up") and motion.y < -JUMP_FORCE/2:
 			motion.y = -JUMP_FORCE/2
 			
+		# Double Jump
+		if Input.is_action_just_pressed("ui_up") and double_jump == true:
+			jump(JUMP_FORCE * 0.75)
+			double_jump = false
+			
 func jump(force):
 	Utils.instance_scene_on_main(JumpEffect, global_position)
 	motion.y = -force
@@ -142,6 +148,7 @@ func move():
 		motion.x = last_motion.x
 		create_dust_effect()
 		Utils.instance_scene_on_main(JumpEffect, global_position)
+		double_jump = true
 	
 	# Prevent Sliding 
 	if is_on_floor() and get_floor_velocity().length() == 0 and abs(motion.x) < 1:
