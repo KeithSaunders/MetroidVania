@@ -109,6 +109,7 @@ func fire_missile():
 	var missile = Utils.instance_scene_on_main(PlayerMissile, muzzle.global_position)
 	missile.velocity = 	Vector2.RIGHT.rotated(playergun.rotation) * MISSILESPEED
 	missile.velocity.x *= sprite.scale.x
+	motion -= missile.velocity * 0.25
 	missile.rotation = missile.velocity.angle()
 	fireBulletTimer.start()
 
