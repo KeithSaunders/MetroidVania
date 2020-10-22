@@ -106,12 +106,14 @@ func fire_bullet():
 	fireBulletTimer.start()
 
 func fire_missile():
-	var missile = Utils.instance_scene_on_main(PlayerMissile, muzzle.global_position)
-	missile.velocity = 	Vector2.RIGHT.rotated(playergun.rotation) * MISSILESPEED
-	missile.velocity.x *= sprite.scale.x
-	motion -= missile.velocity * 0.25
-	missile.rotation = missile.velocity.angle()
-	fireBulletTimer.start()
+	if playerStats.missles > 0:
+		var missile = Utils.instance_scene_on_main(PlayerMissile, muzzle.global_position)
+		missile.velocity = 	Vector2.RIGHT.rotated(playergun.rotation) * MISSILESPEED
+		missile.velocity.x *= sprite.scale.x
+		motion -= missile.velocity * 0.25
+		missile.rotation = missile.velocity.angle()
+		fireBulletTimer.start()
+		playerStats.missles -= 1
 
 func create_dust_effect():
 	var dust_position = global_position
