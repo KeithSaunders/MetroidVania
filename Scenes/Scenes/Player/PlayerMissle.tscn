@@ -43,6 +43,9 @@ shape = SubResource( 1 )
 
 [node name="Flames" type="Particles2D" parent="." index="4"]
 position = Vector2( -6, 0 )
+amount = 6
+lifetime = 0.2
+preprocess = 0.2
 local_coords = false
 process_material = SubResource( 4 )
 texture = ExtResource( 3 )
