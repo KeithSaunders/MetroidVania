@@ -45,11 +45,11 @@ var invicible = false setget set_invicible
 func _ready():
 	playerStats.connect("player_died", self, "_on_died")
 	# Gives our resource a reference when the player exists
-	mainInstances.player = self
+	mainInstances.Player = self
 	
 func _exit_tree() -> void:
 	# Removes the reference to our player when the player exits the tree
-	mainInstances.player = null
+	mainInstances.Player = null
 
 func _physics_process(delta: float) -> void:
 
