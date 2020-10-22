@@ -5,7 +5,9 @@ const PlayerBullet = preload("res://Scenes/Scenes/Player/PlayerBullet.tscn")
 const JumpEffect = preload("res://Scenes/Scenes/Effects/JumpEffect.tscn")
 const WallDustEffect = preload("res://Scenes/Scenes/Effects/WallDustEffect.tscn")
 
+# Created Resources (in ResourceLoader script
 var playerStats = ResourceLoader.PlayerStats
+var mainInstances = ResourceLoader.MainInstances
 
 # Get Access
 onready var sprite = $Sprite
@@ -42,6 +44,12 @@ var invicible = false setget set_invicible
 
 func _ready():
 	playerStats.connect("player_died", self, "_on_died")
+	# Gives our resource a reference when the player exists
+	mainInstances.player = self
+	
+func _exit_tree() -> void:
+	# Removes the reference to our player when the player exits the tree
+	mainInstances.player = null
 
 func _physics_process(delta: float) -> void:
 
