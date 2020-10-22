@@ -4,6 +4,7 @@ const DustEffect = preload("res://Scenes/Scenes/Effects/DustEffect.tscn")
 const PlayerBullet = preload("res://Scenes/Scenes/Player/PlayerBullet.tscn")
 const JumpEffect = preload("res://Scenes/Scenes/Effects/JumpEffect.tscn")
 const WallDustEffect = preload("res://Scenes/Scenes/Effects/WallDustEffect.tscn")
+const PlayerMissile = preload("res://Scenes/Scenes/Player/PlayerMissle.tscn")
 
 # Created Resources (in ResourceLoader script
 var playerStats = ResourceLoader.PlayerStats
@@ -28,6 +29,7 @@ export (int) var GRAVITY = 200
 export (int) var BULLETSPEED = 250
 export (int) var WALLSLIDESPEED = 48
 export (int) var MAXWALLSLIDESPEED = 128
+export (int) var MISSILESPEED = 150
 
 enum {
 	MOVE,
@@ -82,6 +84,9 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("fire") and fireBulletTimer.time_left == 0:
 		fire_bullet()
+		
+	if Input.is_action_pressed("fire_missle") and fireBulletTimer.time_left == 0:
+		fire_missile()
 	
 func fire_bullet():
 	var bullet = Utils.instance_scene_on_main(PlayerBullet, muzzle.global_position)
@@ -98,6 +103,13 @@ func fire_bullet():
 	bullet.rotation = bullet.velocity.angle()
 	
 	# One shot timer to set firerate | allows holding left button down
+	fireBulletTimer.start()
+
+func fire_missile():
+	var missile = Utils.instance_scene_on_main(PlayerMissile, muzzle.global_position)
+	missile.velocity = 	Vector2.RIGHT.rotated(playergun.rotation) * MISSILESPEED
+	missile.velocity.x *= sprite.scale.x
+	missile.rotation = missile.velocity.angle()
 	fireBulletTimer.start()
 
 func create_dust_effect():
