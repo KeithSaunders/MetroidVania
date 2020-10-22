@@ -71,6 +71,11 @@ remote_path = NodePath("../../Camera")
 position = Vector2( 168, 128 )
 collision_mask = 2147483651
 
+[node name="PlantEnemy2" parent="." instance=ExtResource( 10 )]
+position = Vector2( 320, 56 )
+rotation = -1.57079
+collision_mask = 2147483651
+
 [node name="MovingPlatforms " parent="." instance=ExtResource( 4 )]
 position = Vector2( 136, 104 )
 
@@ -118,6 +123,9 @@ position = Vector2( 312, 128 )
 
 [node name="FlyingEnemy" parent="." instance=ExtResource( 9 )]
 position = Vector2( 56, -96 )
+
+[node name="FlyingEnemy2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 352, -80 )
 
 [node name="CrawlingEnemy" parent="." instance=ExtResource( 11 )]
 position = Vector2( 0, 32 )

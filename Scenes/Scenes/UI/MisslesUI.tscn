@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/UI/PlayerMissileIcon.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Scenes/UI/MisslesUI.gd" type="Script" id=3]
 
-[node name="MisslesUI" type="HBoxContainer"]
+[node name="MissilesUI" type="HBoxContainer"]
 margin_right = 17.0
 margin_bottom = 10.0
 custom_constants/separation = 2

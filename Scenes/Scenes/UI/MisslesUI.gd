@@ -5,7 +5,7 @@ var playerStats = ResourceLoader.PlayerStats
 onready var missile_label = $MissileLabel
 
 func _ready() -> void:
-	playerStats.connect("player_missles_update", self, "_on_player_missles_update")
+	playerStats.connect("player_missiles_update", self, "_on_player_missiles_update")
 	
-func _on_player_missles_update(missles):
-	missile_label.text = str(missles)
+func _on_player_missiles_update(missiles):
+	missile_label.text = str(missiles)
