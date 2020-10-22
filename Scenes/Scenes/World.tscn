@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Scenes/World Prefabs/TileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Scenes/Player/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scenes/Scenes/World Prefabs/Camera.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Scenes/UI/UI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Scenes/World Prefabs/FlyingEnemy.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Scenes/World Prefabs/PlantEnemy.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Loop"
@@ -64,6 +65,10 @@ position = Vector2( 112, 104 )
 
 [node name="PlayerPositionLink" parent="Player" index="4"]
 remote_path = NodePath("../../Camera")
+
+[node name="PlantEnemy" parent="." instance=ExtResource( 10 )]
+position = Vector2( 168, 128 )
+collision_mask = 2147483651
 
 [node name="MovingPlatforms " parent="." instance=ExtResource( 4 )]
 position = Vector2( 136, 104 )
