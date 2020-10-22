@@ -148,7 +148,10 @@ func apply_gravity(delta):
 		motion.y = min(motion.y, JUMP_FORCE)
 		
 func update_animation(input_vector):
-	sprite.scale.x = sign(get_local_mouse_position().x)
+	var facing = sign(get_local_mouse_position().x)
+	if facing != 0:
+		sprite.scale.x = facing
+	
 	if input_vector.x != 0:
 		spriteAnimator.play("Run")
 		spriteAnimator.playback_speed = input_vector.x * sprite.scale.x
