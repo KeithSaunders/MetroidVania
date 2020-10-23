@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Scenes/World Prefabs/TileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Scenes/Player/Player.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Scenes/Scenes/World Prefabs/PlantEnemy.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Scenes/World Prefabs/CrawlingEnemy.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Scenes/World Prefabs/Brick.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Scenes/Player/MissilePowerup.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Loop"
@@ -139,6 +140,12 @@ position = Vector2( 352, -80 )
 
 [node name="CrawlingEnemy" parent="." instance=ExtResource( 11 )]
 position = Vector2( 0, 32 )
+
+[node name="MissilePowerup" parent="." instance=ExtResource( 13 )]
+position = Vector2( 144, 120 )
+
+[node name="MissilePowerup2" parent="." instance=ExtResource( 13 )]
+position = Vector2( 56, 48 )
 
 [editable path="Player"]
 
