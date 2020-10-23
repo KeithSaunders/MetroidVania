@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Scenes/World Prefabs/TileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Scenes/Player/Player.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Scenes/Scenes/World Prefabs/FlyingEnemy.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Scenes/World Prefabs/PlantEnemy.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Scenes/World Prefabs/CrawlingEnemy.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Scenes/World Prefabs/Brick.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Loop"
@@ -75,6 +76,15 @@ collision_mask = 2147483651
 position = Vector2( 320, 56 )
 rotation = -1.57079
 collision_mask = 2147483651
+
+[node name="Brick" parent="." instance=ExtResource( 12 )]
+position = Vector2( 104, 64 )
+
+[node name="Brick2" parent="." instance=ExtResource( 12 )]
+position = Vector2( 104, 48 )
+
+[node name="Brick3" parent="." instance=ExtResource( 12 )]
+position = Vector2( 128, 56 )
 
 [node name="MovingPlatforms " parent="." instance=ExtResource( 4 )]
 position = Vector2( 136, 104 )
