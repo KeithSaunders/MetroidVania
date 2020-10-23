@@ -8,6 +8,6 @@ const BRICK_LAYER_BIT = 4
 func _on_Hitbox_body_entered(body: Node) -> void:
 	if body.get_collision_layer_bit(BRICK_LAYER_BIT):
 		body.queue_free()
-		Utils.instance_scene_on_main(ENEMY_DEATH_EFFECT, body.global_position)
+		Utils.instance_scene_on_main(ENEMY_DEATH_EFFECT, body.global_position + Vector2(0,8))
 	# Call Parent function
-#	._on_Hitbox_body_entered(body)
+	._on_Hitbox_body_entered(body)
