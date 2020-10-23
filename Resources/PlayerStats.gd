@@ -6,10 +6,12 @@ var max_health = 4
 var max_missiles = 3
 var missiles = max_missiles setget set_missiles
 var health = max_health setget set_health
+var missiles_unlocked = false setget set_missiles_unlocked
 
 signal player_health_update(value)
 signal player_died
 signal player_missiles_update(value)
+signal player_missiles_unlocked(value)
 
 func set_health(value):
 	screenshake(value, .5, 0.5)
@@ -25,3 +27,7 @@ func screenshake(healthValue, shakeStrength, duration):
 func set_missiles(value):
 	missiles = clamp(value, 0, max_missiles)
 	emit_signal("player_missiles_update", missiles)
+
+func set_missiles_unlocked(value):
+	missiles_unlocked = value
+	emit_signal("player_missiles_unlocked", missiles_unlocked)
