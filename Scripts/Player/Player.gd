@@ -18,6 +18,7 @@ onready var fireBulletTimer = $FireBulletTimer
 onready var playergun = $Sprite/PlayerGun
 onready var muzzle = $Sprite/PlayerGun/Sprite/Muzzle
 onready var blinkAnimator = $BlinkAnimator
+onready var powerUpDetector = $PowerupDetector
 
 # Export variables
 export (int) var ACCELERATION = 512
@@ -87,6 +88,8 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_pressed("fire_missile") and fireBulletTimer.time_left == 0:
 		fire_missile()
+		
+
 	
 func fire_bullet():
 	var bullet = Utils.instance_scene_on_main(PlayerBullet, muzzle.global_position)
@@ -106,7 +109,7 @@ func fire_bullet():
 	fireBulletTimer.start()
 
 func fire_missile():
-	if playerStats.missiles > 0:
+	if playerStats.missiles > 0 and playerStats.missiles_unlocked:
 		var missile = Utils.instance_scene_on_main(PlayerMissile, muzzle.global_position)
 		missile.velocity = Vector2.RIGHT.rotated(playergun.rotation) * MISSILESPEED
 		missile.velocity.x *= sprite.scale.x
@@ -253,3 +256,8 @@ func wall_detach(delta, wall_axis):
 	if Input.is_action_just_pressed("ui_left"):
 		motion.x = -ACCELERATION * delta
 		state = MOVE
+
+
+func _on_PowerupDetector_area_entered(area: Area2D) -> void:
+	if area is Powerup:
+		area._pickup()
