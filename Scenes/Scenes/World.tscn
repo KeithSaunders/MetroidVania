@@ -1,54 +1,10 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scenes/Scenes/World Prefabs/TileMap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Scenes/Levels/Level_00.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Scenes/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Scenes/World.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Scenes/World Prefabs/MovingPlatforms .tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Scenes/World Prefabs/WalkingEnemy.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Resources/LeftRightPath.tres" type="Curve2D" id=6]
 [ext_resource path="res://Scenes/Scenes/World Prefabs/Camera.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Scenes/UI/UI.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Scenes/World Prefabs/FlyingEnemy.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Scenes/World Prefabs/PlantEnemy.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Scenes/World Prefabs/CrawlingEnemy.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Scenes/World Prefabs/Brick.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scenes/Scenes/Player/MissilePowerup.tscn" type="PackedScene" id=13]
-
-[sub_resource type="Animation" id=1]
-resource_name = "Loop"
-length = 4.0
-loop = true
-step = 1.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Path2D/PathFollow2D:unit_offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( -2, -2 ),
-"update": 0,
-"values": [ 0.0, 1.0 ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "Loop"
-length = 4.0
-loop = true
-step = 1.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Path2D/PathFollow2D:unit_offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( -2, -2 ),
-"update": 0,
-"values": [ 0.0, 1.0 ]
-}
 
 [node name="World" type="Node"]
 script = ExtResource( 3 )
@@ -56,101 +12,13 @@ script = ExtResource( 3 )
 [node name="UI" parent="." instance=ExtResource( 8 )]
 
 [node name="Camera" parent="." instance=ExtResource( 7 )]
-position = Vector2( 112, 96 )
-
-[node name="TileMap" parent="." instance=ExtResource( 1 )]
-collision_layer = 3
-collision_mask = 3
-tile_data = PoolIntArray( -524298, 0, 4, -524297, 0, 196609, -524296, 0, 196609, -524295, 0, 196609, -524294, 0, 196609, -524293, 0, 196609, -524292, 0, 196609, -524291, 0, 196609, -524290, 0, 196609, -524289, 0, 196609, -589824, 0, 196609, -589823, 0, 196609, -589822, 0, 196609, -589821, 0, 196609, -589820, 0, 196609, -589819, 0, 196609, -589818, 0, 8, -589817, 0, 196609, -589816, 0, 196609, -589815, 0, 196609, -589814, 0, 196609, -589813, 0, 196609, -589812, 0, 196609, -589811, 0, 196609, -589810, 0, 196609, -589809, 0, 196609, -589808, 0, 196609, -589807, 0, 196609, -589806, 0, 196609, -589805, 0, 196609, -589804, 0, 6, -589803, 0, 1, -589802, 0, 1, -589801, 0, 2, -458762, 0, 65539, -524282, 0, 65539, -524268, 0, 131072, -524267, 0, 131073, -524266, 0, 65542, -524265, 0, 65538, -393226, 0, 65539, -458746, 0, 65539, -458730, 0, 131072, -458729, 0, 65543, -327690, 0, 65539, -393210, 0, 65539, -393193, 0, 65539, -262154, 0, 65539, -327674, 0, 131075, -327666, 0, 0, -327665, 0, 2, -327657, 0, 65539, -196618, 0, 65539, -262130, 0, 65536, -262129, 0, 65538, -262122, 0, 0, -262121, 0, 131079, -131082, 0, 131076, -131081, 0, 1, -131080, 0, 2, -196594, 0, 65536, -196593, 0, 65538, -196586, 0, 65536, -196585, 0, 65538, -65546, 0, 65536, -65545, 0, 65537, -65544, 0, 65538, -131058, 0, 65536, -131057, 0, 65538, -131050, 0, 65536, -131049, 0, 65538, -10, 0, 65536, -9, 0, 65537, -8, 0, 65538, -65532, 0, 196608, -65531, 0, 196609, -65530, 0, 196609, -65529, 0, 196609, -65528, 0, 6, -65527, 0, 1, -65526, 0, 1, -65525, 0, 1, -65524, 0, 1, -65523, 0, 1, -65522, 0, 131078, -65521, 0, 131077, -65520, 0, 1, -65519, 0, 1, -65518, 0, 5, -65517, 0, 196609, -65516, 0, 6, -65515, 0, 1, -65514, 0, 131078, -65513, 0, 65538, 65526, 0, 65536, 65527, 0, 65537, 65528, 0, 65538, 65531, 0, 0, 65532, 0, 1, 65533, 0, 2, 8, 0, 65536, 9, 0, 65537, 10, 0, 65537, 11, 0, 65537, 12, 0, 65537, 13, 0, 65537, 14, 0, 65537, 15, 0, 65537, 16, 0, 65537, 17, 0, 65537, 18, 0, 65538, 20, 0, 65536, 21, 0, 65537, 22, 0, 65537, 23, 0, 65538, 131062, 0, 65536, 131063, 0, 65537, 131064, 0, 65538, 131067, 0, 65536, 131068, 0, 65537, 131069, 0, 65538, 65544, 0, 131072, 65545, 0, 131073, 65546, 0, 65542, 65547, 0, 65541, 65548, 0, 131073, 65549, 0, 65542, 65550, 0, 65537, 65551, 0, 65541, 65552, 0, 131073, 65553, 0, 131073, 65554, 0, 131074, 65556, 0, 65536, 65557, 0, 65537, 65558, 0, 65537, 65559, 0, 65538, 196598, 0, 131072, 196599, 0, 131073, 196600, 0, 196613, 196601, 0, 196609, 196602, 0, 196609, 196603, 0, 196614, 196604, 0, 131073, 196605, 0, 196613, 196606, 0, 196609, 196607, 0, 196609, 131072, 0, 7, 131082, 0, 65536, 131083, 0, 65538, 131085, 0, 131072, 131086, 0, 65542, 131087, 0, 65538, 131092, 0, 65536, 131093, 0, 65537, 131094, 0, 65537, 131095, 0, 65538, 196608, 0, 131076, 196609, 0, 2, 196618, 0, 131072, 196619, 0, 65543, 196622, 0, 131072, 196623, 0, 131074, 196628, 0, 131072, 196629, 0, 131073, 196630, 0, 131073, 196631, 0, 196613, 196632, 0, 196609, 196633, 0, 196609, 196634, 0, 196609, 196635, 0, 196609, 196636, 0, 196609, 196637, 0, 196609, 196638, 0, 7, 262144, 0, 65536, 262145, 0, 131077, 262146, 0, 1, 262147, 0, 2, 262155, 0, 131075, 262174, 0, 65539, 327680, 0, 65536, 327681, 0, 65537, 327682, 0, 65537, 327683, 0, 131077, 327684, 0, 2, 327710, 0, 65539, 393216, 0, 65536, 393217, 0, 65537, 393218, 0, 65537, 393219, 0, 65537, 393220, 0, 131077, 393221, 0, 2, 393237, 1, 0, 393238, 536870912, 1, 393239, 0, 2, 393244, 0, 4, 393245, 0, 196609, 393246, 0, 196615, 458752, 0, 65536, 458753, 0, 65537, 458754, 0, 65537, 458755, 0, 65537, 458756, 0, 65537, 458757, 0, 131077, 458758, 0, 2, 458768, 1, 0, 458769, 0, 2, 458772, 1, 0, 458773, 1, 1, 458774, 0, 65537, 458775, 0, 65538, 458780, 0, 65539, 524288, 0, 131072, 524289, 0, 131073, 524290, 0, 131073, 524291, 0, 131073, 524292, 0, 131073, 524293, 0, 131073, 524294, 0, 196613, 524295, 0, 196609, 524296, 0, 196609, 524297, 0, 196609, 524298, 0, 196609, 524299, 0, 196609, 524300, 0, 196609, 524301, 0, 196609, 524302, 0, 196609, 524303, 536870912, 196609, 524304, 0, 196614, 524305, 0, 196613, 524306, 0, 196609, 524307, 0, 196609, 524308, 0, 196614, 524309, 0, 131073, 524310, 0, 131073, 524311, 0, 196613, 524312, 0, 196609, 524313, 0, 196609, 524314, 0, 196609, 524315, 0, 196609, 524316, 0, 196615 )
+position = Vector2( 0, -8 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 112, 104 )
 
 [node name="PlayerPositionLink" parent="Player" index="4"]
 remote_path = NodePath("../../Camera")
 
-[node name="PlantEnemy" parent="." instance=ExtResource( 10 )]
-position = Vector2( 168, 128 )
-collision_mask = 2147483651
-
-[node name="PlantEnemy2" parent="." instance=ExtResource( 10 )]
-position = Vector2( 320, 56 )
-rotation = -1.57079
-collision_mask = 2147483651
-
-[node name="Brick" parent="." instance=ExtResource( 12 )]
-position = Vector2( 104, 64 )
-
-[node name="Brick2" parent="." instance=ExtResource( 12 )]
-position = Vector2( 104, 48 )
-
-[node name="Brick3" parent="." instance=ExtResource( 12 )]
-position = Vector2( 128, 56 )
-
-[node name="MovingPlatforms " parent="." instance=ExtResource( 4 )]
-position = Vector2( 136, 104 )
-
-[node name="KinematicBody2D" parent="MovingPlatforms " index="0"]
-position = Vector2( -0.25618, -0.356041 )
-
-[node name="Path2D" parent="MovingPlatforms " index="1"]
-curve = ExtResource( 6 )
-
-[node name="PathFollow2D" parent="MovingPlatforms /Path2D" index="0"]
-position = Vector2( -0.256187, -0.356041 )
-
-[node name="MovingPlatforms 2" parent="." instance=ExtResource( 4 )]
-position = Vector2( -56, -40 )
-
-[node name="KinematicBody2D" parent="MovingPlatforms 2" index="0"]
-position = Vector2( -0.256187, -0.356041 )
-
-[node name="Path2D" parent="MovingPlatforms 2" index="1"]
-curve = ExtResource( 6 )
-
-[node name="PathFollow2D" parent="MovingPlatforms 2/Path2D" index="0"]
-position = Vector2( -0.256187, -0.356041 )
-
-[node name="Animation Player" parent="MovingPlatforms 2" index="2"]
-anims/Loop = SubResource( 1 )
-
-[node name="MovingPlatforms 3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 176, -48 )
-
-[node name="KinematicBody2D" parent="MovingPlatforms 3" index="0"]
-position = Vector2( 15.8973, 7.84377 )
-
-[node name="Path2D" parent="MovingPlatforms 3" index="1"]
-position = Vector2( 16, 8 )
-
-[node name="Animation Player" parent="MovingPlatforms 3" index="2"]
-anims/Loop = SubResource( 2 )
-
-[node name="WalkingEnemy" parent="." instance=ExtResource( 5 )]
-position = Vector2( 280, 112 )
-
-[node name="WalkingEnemy2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 312, 128 )
-
-[node name="FlyingEnemy" parent="." instance=ExtResource( 9 )]
-position = Vector2( 56, -96 )
-
-[node name="FlyingEnemy2" parent="." instance=ExtResource( 9 )]
-position = Vector2( 352, -80 )
-
-[node name="CrawlingEnemy" parent="." instance=ExtResource( 11 )]
-position = Vector2( 0, 32 )
-
-[node name="MissilePowerup" parent="." instance=ExtResource( 13 )]
-position = Vector2( 144, 120 )
-
-[node name="MissilePowerup2" parent="." instance=ExtResource( 13 )]
-position = Vector2( 56, 48 )
+[node name="Level_00" parent="." instance=ExtResource( 1 )]
 
 [editable path="Player"]
-
-[editable path="MovingPlatforms "]
-
-[editable path="MovingPlatforms 2"]
-
-[editable path="MovingPlatforms 3"]
