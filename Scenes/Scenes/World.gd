@@ -24,9 +24,9 @@ func change_levels(door):
 	
 	# Load the new level based on the file path
 	var New_Level = load(door.new_level_path)
-	# Unpack the level
+	# Unpack the level and instance
 	var new_level = New_Level.instance()
-	# Add the level as a child of World
+	# Add the level as a child of World.
 	add_child(new_level)
 	
 	# Gets the new door or door to next level, passes in the door that was 
