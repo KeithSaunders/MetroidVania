@@ -20,6 +20,8 @@ onready var muzzle = $Sprite/PlayerGun/Sprite/Muzzle
 onready var blinkAnimator = $BlinkAnimator
 onready var powerUpDetector = $PowerupDetector
 
+signal hit_door(door)
+
 # Export variables
 export (int) var ACCELERATION = 512
 export (int) var MAX_SPEED = 64
