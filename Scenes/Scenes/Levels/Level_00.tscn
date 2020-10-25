@@ -3,7 +3,7 @@
 [ext_resource path="res://Scenes/Scenes/Levels/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Scenes/Levels/Door.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Scenes/Player/DoubleJumpPowerup.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Scenes/World Prefabs/BossEnemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Scenes/World Prefabs/Spike.tscn" type="PackedScene" id=4]
 
 [node name="Level_00" instance=ExtResource( 1 )]
 
@@ -19,5 +19,5 @@ position = Vector2( 136, 128 )
 position = Vector2( 312, 128 )
 new_level_path = "res://Scenes/Scenes/Levels/Level_01.tscn"
 
-[node name="BossEnemy" parent="." index="2" instance=ExtResource( 4 )]
-position = Vector2( 152, 64 )
+[node name="Spike" parent="." index="2" instance=ExtResource( 4 )]
+position = Vector2( 88, 128 )
