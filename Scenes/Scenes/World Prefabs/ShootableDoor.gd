@@ -6,9 +6,9 @@ onready var animationPlayer = $AnimationPlayer
 onready var timer = $DoorTimer
 
 
-const COLLIDER = preload("res://Scenes/Scenes/World Prefabs/ShootablePlayerCollider.tscn")
 
 const SHOOTABLEDOORSHAPE = preload("res://Resources/ShootableDoor.tres")
+const SIDEWAYSSHOOTABLEDOORSHAPE = preload("res://Resources/SidewaysShootableDoor.tres")
 const EMPTYDOORSHAPE = preload("res://Resources/EmptyDoorShape.tres")
 
 
@@ -39,7 +39,13 @@ func disable():
 func enable():
 	var collider = CollisionShape2D.new()
 	collider.name = "PlayerCollider"
-	collider.set_shape(SHOOTABLEDOORSHAPE)
+	orientation_check(collider)
 	self.add_child(collider)
+	
+func orientation_check(collider):
+	if self.rotation_degrees == 90 or self.rotation_degrees == 180:
+		collider.set_shape(SIDEWAYSSHOOTABLEDOORSHAPE)
+	else:
+		collider.set_shape(SHOOTABLEDOORSHAPE)
 	
 	
