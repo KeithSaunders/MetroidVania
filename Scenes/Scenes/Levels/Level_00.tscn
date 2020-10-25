@@ -17,3 +17,7 @@ new_level_path = "res://Scenes/Scenes/Levels/Level_01.tscn"
 
 [node name="ShootableDoor" parent="." index="2" instance=ExtResource( 3 )]
 position = Vector2( 88, 160 )
+
+[node name="ShootableDoor2" parent="." index="3" instance=ExtResource( 3 )]
+position = Vector2( 168, 192 )
+rotation = 1.5708
