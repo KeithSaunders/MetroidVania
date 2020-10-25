@@ -2,16 +2,28 @@ extends Resource
 
 class_name PlayerStats
 
+
+# Health Player Stats
 var max_health = 4
+var health = max_health setget set_health
+
+# Missle Player Stats
 var max_missiles = 3
 var missiles = max_missiles setget set_missiles
-var health = max_health setget set_health
 var missiles_unlocked = false setget set_missiles_unlocked
 
-signal player_health_update(value)
+# Player Upgrades
+var double_jump_unlocked = false setget set_double_jump_unlocked
+var wall_slide_unlocked = false setget set_wall_slide_unlocked
+
+# Playerstat Signal to update
 signal player_died
+signal player_health_update(value)
 signal player_missiles_update(value)
 signal player_missiles_unlocked(value)
+signal player_double_jump_unlocked(value)
+signal wall_slide_unlocked(value)
+
 
 func set_health(value):
 	screenshake(value, .5, 0.5)
@@ -31,3 +43,10 @@ func set_missiles(value):
 func set_missiles_unlocked(value):
 	missiles_unlocked = value
 	emit_signal("player_missiles_unlocked", missiles_unlocked)
+	
+func set_double_jump_unlocked(value):
+	double_jump_unlocked = value
+	emit_signal("player_double_jump_unlocked", double_jump_unlocked)
+
+func set_wall_slide_unlocked(value):
+	pass

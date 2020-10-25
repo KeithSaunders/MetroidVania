@@ -10,6 +10,7 @@ func _ready() -> void:
 	# Get access to the player and connect the hit door signal to the 
 	# on player hit door function
 	MainInstances.Player.connect("hit_door", self, "_on_Player_hit_door")
+
 	
 func _on_Player_hit_door(door):
 	# Waits to process function
@@ -50,3 +51,7 @@ func get_door_with_connection(notDoor, connection):
 		if door.connection == connection and door != notDoor:
 			return door
 	return null
+	
+
+	
+

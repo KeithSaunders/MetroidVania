@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Scenes/UI/InstructionPopups/MovementControls.tscn" type="PackedScene" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends CanvasLayer
+
+onready var movementPopup = $MovementControls
+
+var MainInstances = ResourceLoader.MainInstances
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	MainInstances.Player.connect(\"player_spawn\", self, \"_on_player_spawn\")
+
+
+func display_movement_controls():
+	get_tree().pause()
+	movementPopup.popup()
+	
+func _on_player_spawn():
+	display_movement_controls()
+
+
+func _on_MovementControls_modal_closed() -> void:
+	get_tree().paused = false
+	movementPopup.queue_free()
+"
+
+[node name="PopupController" type="CanvasLayer"]
+script = SubResource( 1 )
+
+[node name="MovementControls" parent="." instance=ExtResource( 2 )]
+pause_mode = 2
+[connection signal="modal_closed" from="MovementControls" to="." method="_on_MovementControls_modal_closed"]

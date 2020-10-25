@@ -20,7 +20,9 @@ onready var muzzle = $Sprite/PlayerGun/Sprite/Muzzle
 onready var blinkAnimator = $BlinkAnimator
 onready var powerUpDetector = $PowerupDetector
 
+# Signal call to door
 signal hit_door(door)
+
 
 # Export variables
 export (int) var ACCELERATION = 512
@@ -51,6 +53,7 @@ func _ready():
 	playerStats.connect("player_died", self, "_on_died")
 	# Gives our resource a reference when the player exists
 	mainInstances.Player = self
+
 	
 func _exit_tree() -> void:
 	# Removes the reference to our player when the player exits the tree
@@ -153,7 +156,7 @@ func jump_check():
 			motion.y = -JUMP_FORCE/2
 			
 		# Double Jump
-		if Input.is_action_just_pressed("ui_up") and double_jump == true:
+		if Input.is_action_just_pressed("ui_up") and double_jump == true and playerStats.double_jump_unlocked:
 			jump(JUMP_FORCE * 0.75)
 			double_jump = false
 			
