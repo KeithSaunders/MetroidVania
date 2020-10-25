@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Resources/ShootableDoor.tres" type="Shape2D" id=1]
+
+[node name="PlayerCollider" type="CollisionShape2D"]
+position = Vector2( 1, 0 )
+shape = ExtResource( 1 )

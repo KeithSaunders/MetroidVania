@@ -120,6 +120,7 @@ tracks/1/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 7
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
