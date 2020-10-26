@@ -1,0 +1,171 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/UI/Controls/A-Key.png" type="Texture" id=1]
+[ext_resource path="res://Assets/UI/Controls/D-Key.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Scenes/UI/InstructionPopups/TextPop.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Resources/DefaultTheme.tres" type="Theme" id=4]
+[ext_resource path="res://Scenes/Scenes/UI/InstructionPopups/MovementPopup.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Appear"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterContainer/Instructions:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("A-Key:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("D-Key:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Disappear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterContainer/Instructions:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("A-Key:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("D-Key:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 8.15749, 16 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 8, 16 )
+
+[node name="MovementPopup" instance=ExtResource( 3 )]
+margin_left = -0.157486
+margin_right = -0.157471
+script = ExtResource( 5 )
+
+[node name="CenterContainer" parent="." index="0"]
+margin_left = 40.1575
+margin_top = -72.0
+margin_right = 80.1575
+margin_bottom = -32.0
+
+[node name="Instructions" type="Label" parent="CenterContainer" index="0"]
+margin_top = 7.0
+margin_right = 40.0
+margin_bottom = 32.0
+theme = ExtResource( 4 )
+text = "Use   
+to move."
+percent_visible = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" parent="." index="1"]
+anims/Appear = SubResource( 1 )
+anims/Disappear = SubResource( 2 )
+
+[node name="A-Key" type="TextureRect" parent="." index="2"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 57.2212
+margin_top = -61.7097
+margin_right = 66.2212
+margin_bottom = -51.7097
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="D-Key" type="TextureRect" parent="." index="3"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 67.717
+margin_top = -61.6069
+margin_right = 76.717
+margin_bottom = -51.6069
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FadeIn" type="Area2D" parent="." index="4"]
+collision_mask = 0
+
+[node name="Collider" type="CollisionShape2D" parent="FadeIn" index="0"]
+position = Vector2( 0.157486, -16 )
+shape = SubResource( 3 )
+
+[node name="FadeOut" type="Area2D" parent="." index="5"]
+collision_mask = 0
+
+[node name="Collider" type="CollisionShape2D" parent="FadeOut" index="0"]
+position = Vector2( 120.157, -16 )
+shape = SubResource( 4 )
+[connection signal="body_entered" from="FadeIn" to="." method="_on_FadeIn_body_entered"]
+[connection signal="body_exited" from="FadeOut" to="." method="_on_FadeOut_body_exited"]
