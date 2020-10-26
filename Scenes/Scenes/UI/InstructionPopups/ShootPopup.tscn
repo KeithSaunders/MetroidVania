@@ -1,0 +1,156 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/UI/Controls/Left Mouse Button.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Scenes/UI/InstructionPopups/TextPop.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Scenes/UI/InstructionPopups/JumpPopup.gd" type="Script" id=3]
+[ext_resource path="res://Assets/UI/Controls/Mouse.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=3]
+resource_name = "Appear"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterContainer/Text:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShootMouse:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.55, 0.65 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Mouse:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Disappear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterContainer/Text:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShootMouse:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Mouse:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 16 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 16 )
+
+[node name="JumpPopup" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+
+[node name="CenterContainer" parent="." index="0"]
+margin_left = 9.0
+margin_top = -62.0
+margin_right = 49.0
+margin_bottom = -22.0
+
+[node name="Text" type="Label" parent="CenterContainer" index="0"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 68.0
+margin_bottom = 37.0
+text = "Use   to aim.
+
+Use   to shoot."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" parent="." index="1"]
+anims/Appear = SubResource( 3 )
+anims/Disappear = SubResource( 4 )
+
+[node name="ShootMouse" type="TextureRect" parent="." index="2"]
+margin_left = 29.0
+margin_top = -37.0
+margin_right = 61.0
+margin_bottom = -5.0
+rect_scale = Vector2( 0.249395, 0.249516 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mouse" type="TextureRect" parent="." index="3"]
+margin_left = 29.0
+margin_top = -56.0
+margin_right = 61.0
+margin_bottom = -24.0
+rect_scale = Vector2( 0.249459, 0.250671 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FadeIn" type="Area2D" parent="." index="4"]
+collision_mask = 0
+
+[node name="Collider" type="CollisionShape2D" parent="FadeIn" index="0"]
+position = Vector2( 0, -16 )
+shape = SubResource( 1 )
+
+[node name="FadeOut" type="Area2D" parent="." index="5"]
+collision_mask = 0
+
+[node name="Collider" type="CollisionShape2D" parent="FadeOut" index="0"]
+position = Vector2( 56, -16 )
+shape = SubResource( 2 )
+[connection signal="area_entered" from="FadeIn" to="." method="_on_FadeIn_area_entered"]
+[connection signal="body_entered" from="FadeIn" to="." method="_on_FadeIn_body_entered"]
+[connection signal="body_exited" from="FadeOut" to="." method="_on_FadeOut_body_exited"]
