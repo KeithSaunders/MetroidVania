@@ -127,7 +127,7 @@ script = ExtResource( 2 )
 position = Vector2( 0, -12 )
 texture = ExtResource( 1 )
 hframes = 12
-frame = 11
+frame = 7
 
 [node name="PlayerGun" parent="Sprite" instance=ExtResource( 3 )]
 show_behind_parent = true
