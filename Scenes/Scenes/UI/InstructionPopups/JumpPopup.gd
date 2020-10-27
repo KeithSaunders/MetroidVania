@@ -9,19 +9,18 @@ onready var animationPlayer = $AnimationPlayer
 
 var triggered = false
 
-func _ready():
-#	Events.connect("movement_instructions", self, "_on_movement_instructions")
-	pass
+
 
 func fade_in():
 	if triggered == false:
 		animationPlayer.play("Appear")
+		triggered = true
 		print("triggered")
 	
 func fade_out():
 	animationPlayer.play("Disappear")
-	triggered = true
-#	emit_signal("movement_instructions", triggered)
+	
+
 
 
 func _on_FadeIn_body_entered(body: Node) -> void:

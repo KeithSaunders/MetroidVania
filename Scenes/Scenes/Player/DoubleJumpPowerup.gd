@@ -1,9 +1,10 @@
 extends Powerup
 
+onready var animation = $AnimationPlayer
 
 func _pickup():
 	if playerStats.double_jump_unlocked == false:
 		playerStats.double_jump_unlocked = true
-		queue_free()
+		animation.play("PickedUp")
 	else:
 		queue_free()

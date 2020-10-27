@@ -6,7 +6,7 @@ const EnemyDeathEffect = preload("res://Scenes/Scenes/Effects/EnemyDeathEffect.t
 const HealthPickUp = preload("res://Scenes/Scenes/Player/HealthPickup.tscn")
 
 export (int) var MAX_SPEED = 15
-export (int) var DROP_CHANCE = 5
+export (int) var DROP_CHANCE = 100
 
 var motion = Vector2.ZERO
 

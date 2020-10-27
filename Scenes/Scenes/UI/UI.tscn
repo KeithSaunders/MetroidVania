@@ -13,6 +13,7 @@ margin_right = 25.0
 margin_bottom = 16.0
 
 [node name="MisslesUI" parent="." instance=ExtResource( 3 )]
+visible = false
 margin_left = 4.49231
 margin_top = 18.1071
 margin_right = 21.4923

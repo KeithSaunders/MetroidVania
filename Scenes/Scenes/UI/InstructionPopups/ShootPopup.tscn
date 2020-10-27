@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/Scenes/UI/InstructionPopups/JumpPopup.gd" type="Script" id=3]
 [ext_resource path="res://Assets/UI/Controls/Mouse.png" type="Texture" id=4]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "Appear"
 step = 0.05
 tracks/0/type = "value"
@@ -45,7 +45,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "Disappear"
 length = 0.5
 tracks/0/type = "value"
@@ -84,14 +84,28 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 8, 40 )
+
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 8, 16 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 8, 16 )
-
-[node name="JumpPopup" instance=ExtResource( 2 )]
+[node name="ShootPopup" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
 
 [node name="CenterContainer" parent="." index="0"]
@@ -101,22 +115,23 @@ margin_right = 49.0
 margin_bottom = -22.0
 
 [node name="Text" type="Label" parent="CenterContainer" index="0"]
-margin_left = 2.0
 margin_top = 2.0
-margin_right = 68.0
+margin_right = 66.0
 margin_bottom = 37.0
 text = "Use   to aim.
 
 Use   to shoot."
+percent_visible = 0.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AnimationPlayer" parent="." index="1"]
-anims/Appear = SubResource( 3 )
-anims/Disappear = SubResource( 4 )
+anims/Appear = SubResource( 1 )
+anims/Disappear = SubResource( 2 )
 
 [node name="ShootMouse" type="TextureRect" parent="." index="2"]
+modulate = Color( 1, 1, 1, 0 )
 margin_left = 29.0
 margin_top = -37.0
 margin_right = 61.0
@@ -128,6 +143,7 @@ __meta__ = {
 }
 
 [node name="Mouse" type="TextureRect" parent="." index="3"]
+modulate = Color( 1, 1, 1, 0 )
 margin_left = 29.0
 margin_top = -56.0
 margin_right = 61.0
@@ -143,14 +159,14 @@ collision_mask = 0
 
 [node name="Collider" type="CollisionShape2D" parent="FadeIn" index="0"]
 position = Vector2( 0, -16 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="FadeOut" type="Area2D" parent="." index="5"]
 collision_mask = 0
 
 [node name="Collider" type="CollisionShape2D" parent="FadeOut" index="0"]
 position = Vector2( 56, -16 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 [connection signal="area_entered" from="FadeIn" to="." method="_on_FadeIn_area_entered"]
 [connection signal="body_entered" from="FadeIn" to="." method="_on_FadeIn_body_entered"]
 [connection signal="body_exited" from="FadeOut" to="." method="_on_FadeOut_body_exited"]

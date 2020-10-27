@@ -12,14 +12,15 @@ script = ExtResource( 3 )
 [node name="UI" parent="." instance=ExtResource( 8 )]
 
 [node name="Camera" parent="." instance=ExtResource( 7 )]
-position = Vector2( 72, 152 )
+position = Vector2( 16, 152 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 72, 160 )
+position = Vector2( 16, 160 )
 
 [node name="PlayerPositionLink" parent="Player" index="4"]
 remote_path = NodePath("../../Camera")
 
 [node name="Level_00" parent="." instance=ExtResource( 1 )]
+script = null
 
 [editable path="Player"]

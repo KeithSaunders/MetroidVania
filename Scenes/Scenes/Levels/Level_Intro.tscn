@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Scenes/Player/PlayerCinematic.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Scenes/World Prefabs/TileMap.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Scenes/Levels/Level.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Scenes/Levels/IntroLevel.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Effects/Particle.png" type="Texture" id=4]
 [ext_resource path="res://Assets/BackgroundObjects/Droppod.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/Scenes/Player/Cinematic/TextIntro.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Resources/DefaultTheme.tres" type="Theme" id=7]
+[ext_resource path="res://Assets/UI/Controls/Left Mouse Button.png" type="Texture" id=8]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.955801, 0 ), 0.0, 0.0, 0, 0 ]
@@ -187,6 +188,58 @@ tracks/12/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=5]
+resource_name = "Skip"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera2D/SkipCutscene/Label:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera2D/SkipCutscene/TextureRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Camera2D/SkipCutscene/TextureRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Camera2D/SkipCutscene/Label:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="Level_Intro" type="Node2D"]
 script = ExtResource( 3 )
 
@@ -239,6 +292,7 @@ frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Animate = SubResource( 4 )
+anims/Skip = SubResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 160, -128 )
@@ -247,6 +301,44 @@ smoothing_enabled = true
 __meta__ = {
 "_editor_description_": "160,-144 camera pos"
 }
+
+[node name="SkipCutscene" type="Control" parent="Camera2D"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -200.0
+margin_top = 88.0
+margin_right = -160.0
+margin_bottom = 128.0
+theme = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Camera2D/SkipCutscene"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Press Left Mouse Button to Skip"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D/SkipCutscene"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -56.0
+margin_top = -40.0
+margin_right = -16.0
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 7 )
+texture = ExtResource( 8 )
 [connection signal="ready" from="." to="." method="_on_Level_Intro_ready"]
 
 [editable path="Control"]

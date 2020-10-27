@@ -14,10 +14,10 @@ func _ready():
 func fade_in():
 	if triggered == false:
 		animationPlayer.play("Appear")
+		triggered = true
 	
 func fade_out():
 	animationPlayer.play("Disappear")
-	triggered = true
 	emit_signal("movement_instructions", triggered)
 
 

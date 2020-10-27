@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="InvisibleWall" type="Area2D"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

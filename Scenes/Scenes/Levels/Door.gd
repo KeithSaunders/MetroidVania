@@ -13,7 +13,8 @@ var active = true
 func _on_Door_body_entered(Player: Node) -> void:
 	# Emit the hit_door signal. Also passes the Door as a paramaeter
 	Player.emit_signal("hit_door", self)
+	print("Door Hit")
 	
 	# Turns the door off after emitted to prevent bugs. Becomes true when 
 	# reinstanced as a new level
-	active = false
+#	active = false
