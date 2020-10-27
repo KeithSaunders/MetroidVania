@@ -1,0 +1,254 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scenes/Scenes/Player/PlayerCinematic.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Scenes/World Prefabs/TileMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Scenes/Levels/Level.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Effects/Particle.png" type="Texture" id=4]
+[ext_resource path="res://Assets/BackgroundObjects/Droppod.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Scenes/Player/Cinematic/TextIntro.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Resources/DefaultTheme.tres" type="Theme" id=7]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.955801, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 25, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 15.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_curve = SubResource( 2 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "Animate"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control/CenterContainer/Label:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.1, 3.1, 5.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.261, 0.261, 1.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Control")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerCinematic:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 13.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Camera2D:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 7, 8.9, 9.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 160, -144 ), Vector2( 160, -24 ), Vector2( 160, 104 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Ship:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 9.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Ship:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 9.7, 12.2, 16.8, 18.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -32, 8 ), Vector2( 160, 16 ), Vector2( 160, 16 ), Vector2( 344, -24 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Ship:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 12.7, 12.8, 12.9, 13, 13.1, 13.2, 16.2, 16.3, 16.4, 16.5, 16.6, 16.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 5, 4, 3, 2, 1, 0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("PlayerCinematic:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 13.3, 16.2, 16.9, 19.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 160, 16 ), Vector2( 160, 176 ), Vector2( 160, 176 ), Vector2( 336, 176 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Control/CenterContainer/Label:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Particles2D:emitting")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 13.3, 16.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/10/type = "animation"
+tracks/10/path = NodePath("PlayerCinematic/AnimationPlayer")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"clips": PoolStringArray( "Idle", "Idle", "Idle", "Run", "Run", "Run", "Run" ),
+"times": PoolRealArray( 13.3, 14.5, 15.7, 16.9, 17.5, 18.1, 18.7 )
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Control/CenterContainer/Label:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 5.1, 7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/12/type = "method"
+tracks/12/path = NodePath(".")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 19.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "change_scene"
+} ]
+}
+
+[node name="Level_Intro" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Control" parent="." instance=ExtResource( 6 )]
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 120.0
+margin_top = -144.0
+margin_right = 120.0
+margin_bottom = -144.0
+
+[node name="Label" parent="Control/CenterContainer" index="0"]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 107.0
+margin_bottom = 25.0
+theme = ExtResource( 7 )
+text = "Mission:
+Destroy the Alien Presence."
+percent_visible = 0.0
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 160, 16 )
+emitting = false
+amount = 100
+lifetime = 2.0
+visibility_rect = Rect2( -25, 0, 50, 80 )
+process_material = SubResource( 3 )
+texture = ExtResource( 4 )
+
+[node name="TileMap" parent="." instance=ExtResource( 2 )]
+tile_data = PoolIntArray( 19, 0, 3, 65555, 0, 65539, 131091, 0, 65539, 196609, 0, 0, 196610, 0, 2, 196626, 1, 0, 196627, 0, 131079, 262144, 0, 0, 262145, 0, 131078, 262146, 0, 65538, 262162, 0, 65536, 262163, 0, 65538, 327680, 0, 65536, 327681, 0, 65537, 327682, 0, 65538, 327697, 1, 0, 327698, 0, 131078, 327699, 0, 65538, 393216, 0, 131072, 393217, 0, 65542, 393218, 0, 131077, 393219, 0, 2, 393233, 0, 65536, 393234, 0, 65537, 393235, 0, 65538, 458753, 0, 65536, 458754, 0, 65537, 458755, 0, 65538, 458769, 0, 65536, 458770, 0, 65537, 458771, 0, 65538, 524288, 0, 0, 524289, 0, 131078, 524290, 0, 65537, 524291, 0, 65538, 524305, 0, 131072, 524306, 0, 131073, 524307, 0, 131074, 589824, 0, 65536, 589825, 0, 65537, 589826, 0, 65537, 589827, 0, 131077, 589828, 0, 2, 720895, 0, 0, 655360, 0, 131078, 655361, 0, 65537, 655362, 0, 65537, 655363, 0, 65537, 655364, 0, 131077, 655365, 0, 2, 786431, 0, 65536, 720896, 0, 65537, 720897, 0, 65537, 720898, 0, 65537, 720899, 0, 65537, 720900, 0, 65537, 720901, 0, 131077, 720902, 0, 1, 720903, 0, 1, 720904, 0, 1, 720905, 0, 1, 720906, 0, 1, 720907, 0, 1, 720908, 0, 1, 720909, 0, 1, 720910, 0, 1, 720911, 0, 1, 720912, 0, 1, 720913, 0, 1, 720914, 0, 1, 720915, 0, 2, 851965, 0, 0, 851966, 0, 1, 851967, 0, 131078, 786432, 0, 65537, 786433, 0, 65537, 786434, 0, 65537, 786435, 0, 65537, 786436, 0, 65537, 786437, 0, 65537, 786438, 0, 65537, 786439, 0, 65537, 786440, 0, 65537, 786441, 0, 65537, 786442, 0, 65537, 786443, 0, 65537, 786444, 0, 65537, 786445, 0, 65537, 786446, 0, 65537, 786447, 0, 65537, 786448, 0, 65537, 786449, 0, 65537, 786450, 0, 65537, 786451, 0, 65538, 917496, 0, 0, 917497, 0, 1, 917498, 0, 1, 917499, 0, 1, 917500, 0, 1, 917501, 0, 131078, 917502, 0, 65537, 917503, 0, 65537, 851968, 0, 65537, 851969, 0, 65537, 851970, 0, 65537, 851971, 0, 65537, 851972, 0, 65537, 851973, 0, 65537, 851974, 0, 65537, 851975, 0, 65537, 851976, 0, 65537, 851977, 0, 65537, 851978, 0, 65537, 851979, 0, 65537, 851980, 0, 65537, 851981, 0, 65537, 851982, 0, 65537, 851983, 0, 65537, 851984, 0, 65537, 851985, 0, 65537, 851986, 0, 65537, 851987, 0, 65538, 983029, 0, 196608, 983030, 0, 196609, 983031, 0, 196609, 983032, 0, 196614, 983033, 0, 131073, 983034, 0, 131073, 983035, 0, 131073, 983036, 0, 131073, 983037, 0, 131073, 983038, 0, 131073, 983039, 0, 131073, 917504, 0, 131073, 917505, 0, 131073, 917506, 0, 131073, 917507, 0, 131073, 917508, 0, 131073, 917509, 0, 131073, 917510, 0, 131073, 917511, 0, 131073, 917512, 0, 131073, 917513, 0, 131073, 917514, 0, 131073, 917515, 0, 131073, 917516, 0, 131073, 917517, 0, 131073, 917518, 0, 131073, 917519, 0, 131073, 917520, 0, 131073, 917521, 0, 131073, 917522, 0, 131073, 917523, 0, 131074 )
+
+[node name="PlayerCinematic" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 160, 21.5173 )
+
+[node name="Sprite" parent="PlayerCinematic" index="0"]
+frame = 0
+
+[node name="Ship" type="Sprite" parent="."]
+visible = false
+position = Vector2( 160, 16 )
+texture = ExtResource( 5 )
+hframes = 6
+frame = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Animate = SubResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 160, -128 )
+current = true
+smoothing_enabled = true
+__meta__ = {
+"_editor_description_": "160,-144 camera pos"
+}
+[connection signal="ready" from="." to="." method="_on_Level_Intro_ready"]
+
+[editable path="Control"]
+
+[editable path="PlayerCinematic"]
