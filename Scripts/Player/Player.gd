@@ -21,6 +21,8 @@ onready var blinkAnimator = $BlinkAnimator
 onready var powerUpDetector = $PowerupDetector
 onready var cameraFollow = $PlayerPositionLink
 
+
+# warning-ignore:unused_signal
 # Signal call to door
 signal hit_door(door)
 
