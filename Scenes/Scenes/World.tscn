@@ -21,6 +21,5 @@ position = Vector2( 16, 160 )
 remote_path = NodePath("../../Camera")
 
 [node name="Level_00" parent="." instance=ExtResource( 1 )]
-script = null
 
 [editable path="Player"]
