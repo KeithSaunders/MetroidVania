@@ -7,6 +7,9 @@ onready var current_level = $Level_00
 func _ready() -> void:
 	VisualServer.set_default_clear_color(Color.black)
 	
+	if SaveandLoader.is_loading:
+		SaveandLoader.load_game()
+	
 	# Get access to the player and connect the hit door signal to the 
 	# on player hit door function
 	MainInstances.Player.connect("hit_door", self, "_on_Player_hit_door")
@@ -58,6 +61,5 @@ func change_scene(level_path):
 	
 	pass
 	
-
 	
 
