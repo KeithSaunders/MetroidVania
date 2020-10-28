@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Scenes/UI/InstructionPopups/JumpPopup.gd" type="Script" id=2]
 [ext_resource path="res://Assets/UI/Controls/W-Key.png" type="Texture" id=3]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=5]
 resource_name = "Appear"
 tracks/0/type = "value"
 tracks/0/path = NodePath("CenterContainer/Text:percent_visible")
@@ -31,7 +31,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=6]
 resource_name = "Disappear"
 length = 0.5
 tracks/0/type = "value"
@@ -100,8 +100,8 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" parent="." index="1"]
-anims/Appear = SubResource( 1 )
-anims/Disappear = SubResource( 2 )
+anims/Appear = SubResource( 5 )
+anims/Disappear = SubResource( 6 )
 
 [node name="W-key" type="TextureRect" parent="." index="2"]
 modulate = Color( 1, 1, 1, 0 )
@@ -115,14 +115,14 @@ __meta__ = {
 }
 
 [node name="FadeIn" type="Area2D" parent="." index="3"]
-collision_mask = 0
+collision_layer = 0
 
 [node name="Collider" type="CollisionShape2D" parent="FadeIn" index="0"]
 position = Vector2( 0, -16 )
 shape = SubResource( 3 )
 
 [node name="FadeOut" type="Area2D" parent="." index="4"]
-collision_mask = 0
+collision_layer = 0
 
 [node name="Collider" type="CollisionShape2D" parent="FadeOut" index="0"]
 position = Vector2( 56, -16 )
