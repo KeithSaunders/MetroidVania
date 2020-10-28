@@ -266,3 +266,17 @@ func wall_detach(delta, wall_axis):
 func _on_PowerupDetector_area_entered(area: Area2D) -> void:
 	if area is Powerup:
 		area._pickup()
+		
+func save():
+	# Create a save_dictioary that gets the following information
+	# 1. File name with get_filename()
+	# 2. Gets the parent and path, to add as a child later.
+	# 3. Gets the position x
+	# 4. Gets the position y
+	var save_dictionary = {
+		"filename" : get_filename(),
+		"parent" : get_parent().get_path(),
+		"position_x" : position.x,
+		"position_y" : position.y
+	}
+	return save_dictionary
