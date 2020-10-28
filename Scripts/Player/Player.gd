@@ -19,6 +19,7 @@ onready var playergun = $Sprite/PlayerGun
 onready var muzzle = $Sprite/PlayerGun/Sprite/Muzzle
 onready var blinkAnimator = $BlinkAnimator
 onready var powerUpDetector = $PowerupDetector
+onready var cameraFollow = $PlayerPositionLink
 
 # Signal call to door
 signal hit_door(door)
@@ -53,11 +54,15 @@ func _ready():
 	playerStats.connect("player_died", self, "_on_died")
 	# Gives our resource a reference when the player exists
 	mainInstances.Player = self
+	# Calls this function at the end of the game-tick
+	call_deferred("assign_world_camera")
 
-	
-func _exit_tree() -> void:
+func queue_free():
 	# Removes the reference to our player when the player exits the tree
 	mainInstances.Player = null
+	# Call parent queue free
+	.queue_free()
+
 
 func _physics_process(delta: float) -> void:
 
@@ -280,3 +285,6 @@ func save():
 		"position_y" : position.y
 	}
 	return save_dictionary
+
+func assign_world_camera():
+	cameraFollow.remote_path = mainInstances.WorldCamera.get_path()
