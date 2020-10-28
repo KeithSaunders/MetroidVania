@@ -22,6 +22,7 @@ signal player_health_update(value)
 signal player_missiles_update(value)
 signal player_missiles_unlocked(value)
 signal player_double_jump_unlocked(value)
+# warning-ignore:unused_signal
 signal wall_slide_unlocked(value)
 
 
@@ -48,5 +49,6 @@ func set_double_jump_unlocked(value):
 	double_jump_unlocked = value
 	emit_signal("player_double_jump_unlocked", double_jump_unlocked)
 
+# warning-ignore:unused_argument
 func set_wall_slide_unlocked(value):
 	pass
