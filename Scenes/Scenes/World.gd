@@ -57,9 +57,7 @@ func get_door_with_connection(notDoor, connection):
 	
 func change_scene(level_path):
 	current_level.queue_free()
-	var level = load(level_path)
-	
-	pass
-	
+	load(level_path)
+
 	
 
