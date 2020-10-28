@@ -1,18 +1,13 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Scenes/Levels/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Scenes/Levels/Door.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Scenes/World Prefabs/ShootableDoor.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Scenes/World Prefabs/InvisibleWall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Scenes/UI/InstructionPopups/MovementPopup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Scenes/UI/InstructionPopups/JumpPopup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Scenes/UI/InstructionPopups/ShootPopup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Scenes/Levels/LevelResources/00_to_01.tres" type="Resource" id=8]
-[ext_resource path="res://Scenes/Scenes/World Prefabs/WalkingEnemy.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Scenes/Player/DoubleJumpPowerup.tscn" type="PackedScene" id=10]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 40 )
 
 [node name="Level_00" instance=ExtResource( 1 )]
 
@@ -27,14 +22,7 @@ new_level_path = "res://Scenes/Scenes/Levels/Level_01.tscn"
 [node name="ShootableDoor" parent="." index="2" instance=ExtResource( 3 )]
 position = Vector2( 536, 64 )
 
-[node name="InvisibleWall" parent="." index="3" instance=ExtResource( 4 )]
-position = Vector2( -8, 136 )
-
-[node name="CollisionShape2D" parent="InvisibleWall" index="0"]
-position = Vector2( 0, 8 )
-shape = SubResource( 1 )
-
-[node name="MovementPopup" parent="." index="4" instance=ExtResource( 5 )]
+[node name="MovementPopup" parent="." index="3" instance=ExtResource( 5 )]
 margin_left = 16.0
 margin_top = 160.0
 margin_right = 16.0
@@ -55,7 +43,7 @@ margin_right = 76.5595
 [node name="FadeIn" parent="MovementPopup" index="4"]
 position = Vector2( 8, 0 )
 
-[node name="JumpPopup" parent="." index="5" instance=ExtResource( 6 )]
+[node name="JumpPopup" parent="." index="4" instance=ExtResource( 6 )]
 margin_left = 312.0
 margin_top = 160.0
 margin_right = 312.0
@@ -79,7 +67,7 @@ position = Vector2( 40, -80 )
 [node name="Collider" parent="JumpPopup/FadeOut" index="0"]
 position = Vector2( 56, -40 )
 
-[node name="ShootPopup" parent="." index="6" instance=ExtResource( 7 )]
+[node name="ShootPopup" parent="." index="5" instance=ExtResource( 7 )]
 margin_left = 312.0
 margin_top = 160.0
 margin_right = 312.0
@@ -112,13 +100,8 @@ position = Vector2( 0, -40 )
 [node name="FadeOut" parent="ShootPopup" index="5"]
 position = Vector2( 184, -80 )
 
-[node name="DoubleJumpPowerup" parent="." index="7" instance=ExtResource( 10 )]
+[node name="DoubleJumpPowerup" parent="." index="6" instance=ExtResource( 10 )]
 position = Vector2( 224, 144 )
-
-[node name="WalkingEnemy" parent="." index="8" instance=ExtResource( 9 )]
-position = Vector2( 184, 160 )
-
-[editable path="InvisibleWall"]
 
 [editable path="MovementPopup"]
 
