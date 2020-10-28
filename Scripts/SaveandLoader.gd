@@ -2,12 +2,19 @@ extends Node
 
 
 func save_game():
+	# Create a new File named save_game
 	var save_game = File.new()
+	# Open the file in the users appdata, additionally begin writing
 	save_game.open("user://savegame.save", File.WRITE)
+	# Gets all nodes in the persists group into var persistingNodes
 	var persistingNodes = get_tree().get_nodes_in_group("Persists")
+	# Go through all of the nodes in the groups
 	for node in persistingNodes:
+		# Apply the function (defined in each node) and save
 		var node_data = node.save()
+		# Converts the save_data to json
 		save_game.store_line(to_json(node_data))
+	# Close the save_game file
 	save_game.close()
 		
 func load_game():
