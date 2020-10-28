@@ -41,6 +41,7 @@ config/icon="res://icon.png"
 Utils="*res://Utils.gd"
 ResourceLoader="*res://Resources/ResourceLoader.gd"
 Events="*res://Resources/Events.gd"
+SaveandLoader="*res://Scripts/SaveandLoader.gd"
 
 [display]
 
