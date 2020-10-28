@@ -1,5 +1,6 @@
 extends Node
 
+var is_loading = false
 
 func save_game():
 	# Create a new File named save_game
@@ -29,7 +30,7 @@ func load_game():
 	save_game.open("user://savegame.save", File.READ)
 	while not save_game.eof_reached():
 		# Gets the line and places in the var line_string
-		var line_string = save_game().get_line()
+		var line_string = save_game.get_line()
 		# Check if the line is blank or empty string
 		if line_string != "":
 			# parse the json string and places in current_line
