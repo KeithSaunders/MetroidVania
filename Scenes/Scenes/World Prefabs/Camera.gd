@@ -1,12 +1,17 @@
 extends Camera2D
 
-
+var mainInstance = ResourceLoader.MainInstances
 var shake = 0
 
 onready var timer = $Timer
 
 func _ready() -> void:
 	Events.connect("add_screenshake", self, "_on_Events_add_screenshake")
+	mainInstance.WorldCamera = self
+	
+func queue_free():
+	mainInstance.WorldCamera = null
+	.queue_free()
 
 
 # Random offset per frame on horizontal and vertical for the camera
