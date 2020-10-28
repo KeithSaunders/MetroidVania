@@ -17,11 +17,13 @@ func _ready() -> void:
 
 
 func _on_StartButton_pressed() -> void:
-	get_tree().change_scene("res://Scenes/Scenes/Levels/Level_Intro.tscn")
-
+	#get_tree().change_scene("res://Scenes/Scenes/Levels/Level_Intro.tscn")
+	get_tree().change_scene("res://Scenes/Scenes/World.tscn")
 
 func _on_LoadButton_pressed() -> void:
-	pass # Replace with function body.
+	SaveandLoader.is_loading = true
+	get_tree().change_scene("res://Scenes/Scenes/World.tscn")
+	
 
 
 func _on_QuitButton_pressed() -> void:
