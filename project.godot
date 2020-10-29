@@ -39,9 +39,9 @@ config/icon="res://icon.png"
 [autoload]
 
 Utils="*res://Utils.gd"
-ResourceLoader="*res://Resources/ResourceLoader.gd"
 Events="*res://Resources/Events.gd"
-SaveandLoader="*res://Scripts/SaveandLoader.gd"
+ResourceLoader="*res://ResourceLoader.gd"
+SaveandLoader="*res://SaveandLoader.gd"
 
 [display]
 
