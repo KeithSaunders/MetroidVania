@@ -43,7 +43,7 @@ func set_missiles(value):
 
 func set_missiles_unlocked(value):
 	missiles_unlocked = value
-	SaveandLoader.custom_player_data.missiles_unlocked = value
+	SaveandLoader.custom_data.missiles_unlocked = value
 	emit_signal("player_missiles_unlocked", missiles_unlocked)
 	
 func set_double_jump_unlocked(value):
