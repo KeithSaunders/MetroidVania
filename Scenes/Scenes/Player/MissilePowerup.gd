@@ -3,6 +3,7 @@ extends Powerup
 export (int) var BOUNCESPEED = 3
 
 onready var bounceTime = $BounceTimer
+onready var TextAnimator = $TextAnimator
 
 enum DIRECTION{
 	UP = -1,
@@ -17,9 +18,10 @@ func _physics_process(delta: float) -> void:
 
 
 func _pickup():
+	._pickup()
 	if playerStats.missiles_unlocked == false:
 		playerStats.missiles_unlocked = true
-		queue_free()
+		TextAnimator.play("Animate")
 	if playerStats.missiles_unlocked == true:
 		playerStats.missiles += 1
 		queue_free()

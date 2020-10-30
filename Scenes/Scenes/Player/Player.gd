@@ -125,6 +125,7 @@ func fire_bullet():
 
 func fire_missile():
 	if playerStats.missiles > 0 and playerStats.missiles_unlocked:
+		SoundFx.play("MissileShoot", rand_range(.7, 1), -5)
 		var missile = Utils.instance_scene_on_main(PlayerMissile, muzzle.global_position)
 		missile.velocity = Vector2.RIGHT.rotated(playergun.rotation) * MISSILESPEED
 		missile.velocity.x *= sprite.scale.x
@@ -134,6 +135,7 @@ func fire_missile():
 		playerStats.missiles -= 1
 
 func create_dust_effect():
+	SoundFx.play("Step", rand_range(0.6, 1.2), -10)
 	var dust_position = global_position
 	dust_position.x += rand_range(-4, 4)
 	Utils.instance_scene_on_main(DustEffect, dust_position)
@@ -171,6 +173,7 @@ func jump_check():
 			double_jump = false
 			
 func jump(force):
+	SoundFx.play("Jump", rand_range(0.8, 1.1), -5)
 	Utils.instance_scene_on_main(JumpEffect, global_position)
 	motion.y = -force
 	snap_vector = Vector2.ZERO
@@ -222,6 +225,7 @@ func move():
 
 func _on_Hurtbox_hit(damage) -> void:
 	if not invicible:
+		SoundFx.play("Hurt")
 		playerStats.health -= damage
 		blinkAnimator.play("Blink")
 
@@ -246,6 +250,7 @@ func get_wall_axis():
 	
 func wall_slide_jump_check(wall_axis):
 	if Input.is_action_just_pressed("ui_up"):
+		SoundFx.play("Jump", rand_range(0.8, 1.1), -5)
 		motion.x = wall_axis * MAX_SPEED
 		motion.y = -JUMP_FORCE/1.25
 		var dust_position = global_position + Vector2(wall_axis * 4,-2)
@@ -276,6 +281,8 @@ func wall_detach(delta, wall_axis):
 func _on_PowerupDetector_area_entered(area: Area2D) -> void:
 	if area is Powerup:
 		area._pickup()
+		
+
 		
 func save():
 	# Create a save_dictioary that gets the following information

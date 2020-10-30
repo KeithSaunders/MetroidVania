@@ -33,6 +33,11 @@ func set_health(value):
 	if health == 0:
 		emit_signal("player_died")
 		
+func full_stats():
+	self.health = max_health
+	if missiles_unlocked == true:
+		missiles = max_missiles
+		
 func screenshake(healthValue, shakeStrength, duration):
 	if healthValue < health:
 		Events.emit_signal("add_screenshake", shakeStrength, duration)

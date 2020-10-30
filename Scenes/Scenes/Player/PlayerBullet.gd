@@ -5,5 +5,6 @@ extends "res://Scenes/Scenes/Player/Projectile.gd"
 # fired in the animation player. Prevents the bullet from moving before the muzzle
 # flare is called.
 func _ready() -> void:
+	SoundFx.play("Bullet", rand_range(0.8, 1.0))
 	set_process(false)
 

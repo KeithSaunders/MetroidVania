@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 17.0039, 5.00286 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "Loop"
 length = 4.0
 loop = true
@@ -55,4 +55,4 @@ remote_path = NodePath("../../../KinematicBody2D")
 [node name="Animation Player" type="AnimationPlayer" parent="."]
 autoplay = "Loop"
 playback_process_mode = 0
-anims/Loop = SubResource( 3 )
+anims/Loop = SubResource( 2 )

@@ -5,8 +5,8 @@
 [ext_resource path="res://Scenes/Scenes/World Prefabs/ShootablePlayerCollider.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/World/ShootableDoor-1.png" type="Texture" id=4]
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 8, 16 )
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9, 16 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Close"
@@ -75,9 +75,10 @@ collision_mask = 0
 
 [node name="Collider" type="CollisionShape2D" parent="BulletHitbox"]
 position = Vector2( 3, 0 )
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 
 [node name="PlayerCollider" parent="." instance=ExtResource( 3 )]
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Close = SubResource( 2 )
