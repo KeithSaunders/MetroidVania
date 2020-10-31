@@ -35,7 +35,7 @@ func dropChance():
 	if playerStats.health == playerStats.max_health:
 		chance = 0
 	if playerStats.health < playerStats.max_health:
-		chance = (playerStats.health / playerStats.max_health) - 20
+		chance = (playerStats.health / playerStats.max_health) - 15
 		if chance < 0:
 			chance = 10
 	return chance
