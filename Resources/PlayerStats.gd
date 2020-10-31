@@ -4,17 +4,17 @@ class_name PlayerStats
 
 
 # Health Player Stats
-var max_health = 4
+var max_health = 4 setget set_max_health
 var health = max_health setget set_health
 
 # Missle Player Stats
 var max_missiles = 3
 var missiles = max_missiles setget set_missiles
-var missiles_unlocked = false setget set_missiles_unlocked
 
 # Player Upgrades
 var double_jump_unlocked = false setget set_double_jump_unlocked
 var wall_slide_unlocked = false setget set_wall_slide_unlocked
+var missiles_unlocked = false setget set_missiles_unlocked
 
 # Playerstat Signal to update
 signal player_died
@@ -22,6 +22,9 @@ signal player_health_update(value)
 signal player_missiles_update(value)
 signal player_missiles_unlocked(value)
 signal player_double_jump_unlocked(value)
+
+signal player_health_upgrade()
+
 # warning-ignore:unused_signal
 signal wall_slide_unlocked(value)
 
@@ -33,6 +36,18 @@ func set_health(value):
 	if health == 0:
 		emit_signal("player_died")
 		
+func set_max_health(value):
+	max_health = max_health + value
+	print("Max Heatlh is:")
+	print(max_health)
+		
+func player_upgrade_health(value):
+	print("Player Upgrade Health in PlayerStats")
+	set_max_health(value)
+	emit_signal("player_health_upgrade")
+	set_health(max_health)
+	
+
 func full_stats():
 	self.health = max_health
 	if missiles_unlocked == true:
