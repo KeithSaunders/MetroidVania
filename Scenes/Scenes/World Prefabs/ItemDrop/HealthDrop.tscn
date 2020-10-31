@@ -8,7 +8,7 @@
 extents = Vector2( 5, 5 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 2, 5 )
+extents = Vector2( 5, 7 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "Animate"
@@ -47,6 +47,7 @@ collision_mask = 2147483650
 script = ExtResource( 3 )
 
 [node name="ItemDropPickupArea" parent="." index="0"]
+visible = false
 collision_mask = 2147483648
 
 [node name="ItemdropCollider" parent="ItemDropPickupArea" index="0"]
@@ -56,11 +57,28 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="Collider" parent="." index="2"]
-position = Vector2( 0, 4 )
+position = Vector2( 0, 2 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 autoplay = "Animate"
 anims/Animate = SubResource( 3 )
+
+[node name="WallRight" type="RayCast2D" parent="." index="4"]
+visible = false
+enabled = true
+cast_to = Vector2( 5, 0 )
+collision_mask = 2
+
+[node name="WallLeft" type="RayCast2D" parent="." index="5"]
+visible = false
+enabled = true
+cast_to = Vector2( -5, 0 )
+collision_mask = 2
+
+[node name="FloorCheck" type="RayCast2D" parent="." index="6"]
+visible = false
+cast_to = Vector2( 0, 9 )
+collision_mask = 2
 [connection signal="area_entered" from="ItemDropPickupArea" to="." method="_on_ItemDropPickupArea_area_entered"]
 [connection signal="body_entered" from="ItemDropPickupArea" to="." method="_on_ItemDropPickupArea_body_entered"]
