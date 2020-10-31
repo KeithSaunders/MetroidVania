@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Scenes/World Prefabs/ItemDrop/ItemDrop.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/PowerUp/HealthPickup.png" type="Texture" id=2]
@@ -9,6 +9,36 @@ extents = Vector2( 5, 5 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 2, 5 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Animate"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, false, true, false, true, false, true, false, true, false, true ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
 
 [node name="HealthDrop" instance=ExtResource( 1 )]
 position = Vector2( 0, -9 )
@@ -28,5 +58,9 @@ texture = ExtResource( 2 )
 [node name="Collider" parent="." index="2"]
 position = Vector2( 0, 4 )
 shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+autoplay = "Animate"
+anims/Animate = SubResource( 3 )
 [connection signal="area_entered" from="ItemDropPickupArea" to="." method="_on_ItemDropPickupArea_area_entered"]
 [connection signal="body_entered" from="ItemDropPickupArea" to="." method="_on_ItemDropPickupArea_body_entered"]
