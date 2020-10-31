@@ -228,6 +228,9 @@ func _on_Hurtbox_hit(damage) -> void:
 		SoundFx.play("Hurt")
 		playerStats.health -= damage
 		blinkAnimator.play("Blink")
+		
+func _on_Pitfall_triggered(damage) -> void:
+	pass
 
 func _on_died():
 	queue_free()
