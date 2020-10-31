@@ -4,24 +4,24 @@ onready var fadeInCollider = $FadeIn
 onready var fadeOutCollider = $FadeOut
 onready var animationPlayer = $AnimationPlayer
 
+var fade_in_triggered = false
+var fade_out_triggered = false
 
-
-
-var triggered = false
-
+func _ready():
+	if SaveandLoader.event_data.tutorial_popups == true:
+		queue_free()
 
 
 func fade_in():
-	if triggered == false:
+	if fade_in_triggered == false:
 		animationPlayer.play("Appear")
-		triggered = true
-		print("triggered")
+		fade_in_triggered = true
+
 	
 func fade_out():
-	animationPlayer.play("Disappear")
-	
-
-
+	if fade_out_triggered == false:
+		animationPlayer.play("Disappear")
+		fade_out_triggered = true
 
 func _on_FadeIn_body_entered(body: Node) -> void:
 	fade_in()
