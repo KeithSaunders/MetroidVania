@@ -166,7 +166,6 @@ margin_right = 39.0
 margin_bottom = 32.0
 text = "Use
 to Jump"
-percent_visible = 0.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -176,7 +175,6 @@ anims/Appear = SubResource( 1 )
 anims/Disappear = SubResource( 2 )
 
 [node name="W-key" type="TextureRect" parent="." index="2"]
-modulate = Color( 1, 1, 1, 0 )
 margin_left = 30.0
 margin_top = -52.0
 margin_right = 39.0
