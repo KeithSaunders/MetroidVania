@@ -5,6 +5,10 @@ var custom_data = {
 	boss_one_defeated = false
 }
 
+var event_data = {
+	tutorial_popups = false,
+}
+
 
 
 var is_loading = false
@@ -19,6 +23,9 @@ func save_game():
 
 	save_game.store_line(custom_data_json)
 	
+	var event_data_json = to_json(event_data)
+	
+	save_game.store_line(event_data_json)
 	
 	# Gets all nodes in the persists group into var persistingNodes
 	var persistingNodes = get_tree().get_nodes_in_group("Persists")
@@ -42,10 +49,11 @@ func load_game():
 		
 	save_game.open("user://savegame.save", File.READ)
 	
-	if not save_game().eof_reached():
-		custom_data = parse_json(save_game().get_line())
+	if not save_game.eof_reached():
+		custom_data = parse_json(save_game.get_line())
 	
-
+	if not save_game.eof_reached():
+		event_data = parse_json(save_game.get_line())
 	
 	while not save_game.eof_reached():
 		# Gets the line and places in the var line_string
