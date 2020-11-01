@@ -105,7 +105,7 @@ position = Vector2( 48, 144 )
 position = Vector2( 72, 144 )
 
 [node name="Egg" parent="." index="8" instance=ExtResource( 10 )]
-position = Vector2( 304, 152 )
+position = Vector2( 136, 24 )
 
 [editable path="MovementPopup"]
 
