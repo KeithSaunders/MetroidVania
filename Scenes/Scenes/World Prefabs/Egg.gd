@@ -4,9 +4,9 @@ onready var animationPlayer = $AnimationPlayer
 
 const harpy = preload("res://Scenes/Scenes/World Prefabs/Harpy.tscn")
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+
+func _physics_process(delta: float) -> void:
+	apply_gravity(delta)
 
 func _on_EnemyStats_enemy_died() -> void:
 	# Die and spawn acid
@@ -25,3 +25,9 @@ func _on_VisibilityNotifier2D_screen_entered() -> void:
 
 func hatch():
 	animationPlayer.play("Hatch")
+	
+func apply_gravity(delta):
+
+	motion.y += delta * 200 
+	motion.y = min(MAX_SPEED, motion.y)
+	move_and_collide(Vector2(0, motion.y))
