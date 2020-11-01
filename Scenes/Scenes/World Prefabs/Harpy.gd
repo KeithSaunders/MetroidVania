@@ -1,6 +1,6 @@
 extends "res://Scenes/Scenes/World Prefabs/Enemy.gd"
 
-export (int) var ACCELERATION = 100
+export (int) var ACCELERATION = 300
 
 var mainInstances = ResourceLoader.MainInstances
 
