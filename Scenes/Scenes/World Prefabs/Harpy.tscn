@@ -1,20 +1,50 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Scenes/World Prefabs/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Scenes/World Prefabs/Harpy.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Enemies/Harpy.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=1]
 radius = 9.0
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 6.22485
+[sub_resource type="Animation" id=4]
+resource_name = "Animate"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -8 ), Vector2( 0, -10 ), Vector2( 0, -8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0 ]
+}
 
 [sub_resource type="CircleShape2D" id=2]
+radius = 6.22485
+
+[sub_resource type="CircleShape2D" id=3]
 radius = 5.0
 
 [node name="Harpy" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+MAX_SPEED = 40
 
 [node name="Sprite" parent="." index="1"]
 position = Vector2( 0, -8 )
@@ -23,15 +53,19 @@ hframes = 2
 
 [node name="Collider" parent="." index="2"]
 position = Vector2( 0, -8 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" parent="." index="3"]
+autoplay = "Animate"
+anims/Animate = SubResource( 4 )
 
 [node name="Collider" parent="Hurtbox" index="0"]
 position = Vector2( 0, -8 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Collider" parent="Hitbox" index="0"]
 position = Vector2( 0, -8 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="6"]
 position = Vector2( 0.5, -7 )
