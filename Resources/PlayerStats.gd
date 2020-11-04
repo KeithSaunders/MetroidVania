@@ -72,4 +72,5 @@ func set_double_jump_unlocked(value):
 
 # warning-ignore:unused_argument
 func set_wall_slide_unlocked(value):
-	pass
+	wall_slide_unlocked = value
+	emit_signal("player_wall_slide_unlocked", wall_slide_unlocked)
