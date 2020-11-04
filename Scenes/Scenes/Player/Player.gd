@@ -239,7 +239,7 @@ func set_invicible(value):
 	invicible = value
 	
 func wall_slide_check():
-	if not is_on_floor() and is_on_wall():
+	if not is_on_floor() and is_on_wall() and playerStats.wall_slide_unlocked:
 		state = WALL_SLIDE
 		create_dust_effect()
 		double_jump = true
