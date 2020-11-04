@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Scenes/Levels/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Scenes/Levels/Door.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Scenes/Scenes/World Prefabs/ItemDrop/HealthDrop.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Scenes/Player/HealthUp.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Scenes/World Prefabs/Egg.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Scenes/Player/WallSlidePowerup.tscn" type="PackedScene" id=11]
 
 [node name="Level_00" instance=ExtResource( 1 )]
 
@@ -106,6 +107,9 @@ position = Vector2( 72, 144 )
 
 [node name="Egg" parent="." index="8" instance=ExtResource( 10 )]
 position = Vector2( 136, 24 )
+
+[node name="WallSlidePowerup" parent="." index="9" instance=ExtResource( 11 )]
+position = Vector2( 96, 144 )
 
 [editable path="MovementPopup"]
 
